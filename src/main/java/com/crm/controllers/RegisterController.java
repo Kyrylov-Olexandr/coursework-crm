@@ -1,15 +1,14 @@
-package main.java.com.crm.controllers;
+package com.crm.controllers;
 import java.net.URL;
 import java.sql.Timestamp;
-import java.time.ZonedDateTime;
-import java.util.Date;
 import java.util.ResourceBundle;
+
+import com.crm.dao.impl.DefaultUserDao;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import main.java.com.crm.DatabaseHandler;
-import main.java.com.crm.model.User;
+import com.crm.model.User;
 
 public class RegisterController {
 
@@ -47,18 +46,24 @@ public class RegisterController {
 
     @FXML
     void initialize() {
-        DatabaseHandler dbHandler = new DatabaseHandler();
-        registerBtn.setOnAction(event -> dbHandler.registerUser(createUser()));
+        DefaultUserDao userDaoImpl = new DefaultUserDao();
+        registerBtn.setOnAction(event -> userDaoImpl.add(createUser()));
     }
 
     private User createUser() {
+        String email = emailField.getText();
+        String password = passwordField.getText();
+        String firstName = firstNameField.getText();
+        String lastName = lastNameField.getText();
+        String city = lastNameField.getText();
+        Timestamp currDate = new Timestamp(System.currentTimeMillis());
         return User.builder()
-                .email(emailField.getText())
-                .password(passwordField.getText())
-                .firstName(firstNameField.getText())
-                .lastName(lastNameField.getText())
-                .city(lastNameField.getText())
-                .createdDate(new Timestamp(System.currentTimeMillis()))
-                .build();
+                    .email(email)
+                    .password(password)
+                    .firstName(firstName)
+                    .lastName(lastName)
+                    .city(city)
+                    .createdDate(currDate)
+                    .build();
     }
 }

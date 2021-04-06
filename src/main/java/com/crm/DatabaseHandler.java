@@ -1,12 +1,9 @@
-package main.java.com.crm;
+package com.crm;
 
-import main.java.com.crm.dbcolumns.UserTable;
-import main.java.com.crm.model.User;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import com.crm.model.User;
+
+import java.sql.*;
 
 public class DatabaseHandler extends Configs{
     Connection dbConnection;
@@ -18,19 +15,17 @@ public class DatabaseHandler extends Configs{
         return dbConnection;
     }
 
-    public void registerUser(User user) {
-        String insert = "INSERT INTO user(email,password,first_name,last_name,city,created_date) VALUE (?,?,?,?,?,?);";
-        try (PreparedStatement statement = getDbConnection().prepareStatement(insert)) {
-            statement.setString(1, user.getEmail());
-            statement.setString(2, user.getPassword());
-            statement.setString(3, user.getFirstName());
-            statement.setString(4, user.getLastName());
-            statement.setString(5, user.getCity());
-            statement.setTimestamp(6, user.getCreatedDate());
-            statement.executeUpdate();
-
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
+//    public User getUser(User user) {
+//        ResultSet resSet = null;
+//        try (PreparedStatement prSt = getDbConnection().prepareStatement(DbQueries.SELECT_USER.query)) {
+//            prSt.setString(1, user.getEmail());
+//            prSt.setString(2, user.getPassword());
+//
+//            resSet = prSt.executeQuery();
+//
+//            if (resSet != null) {
+//                return true;
+//            }
+//        }
+//    }
 }

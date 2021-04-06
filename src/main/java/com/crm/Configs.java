@@ -1,4 +1,4 @@
-package main.java.com.crm;
+package com.crm;
 
 public class Configs {
     protected String dbHost = "localhost";

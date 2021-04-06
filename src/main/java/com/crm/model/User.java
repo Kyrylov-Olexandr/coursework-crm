@@ -1,7 +1,8 @@
-package main.java.com.crm.model;
+package com.crm.model;
 
 import lombok.Builder;
 import lombok.Data;
+
 
 import java.sql.Timestamp;
 
@@ -17,7 +18,7 @@ public class User {
     private Timestamp createdDate;
     private String city;
     private String phone;
-    private Role role;
+    private String role;
 
 }
 enum Role {

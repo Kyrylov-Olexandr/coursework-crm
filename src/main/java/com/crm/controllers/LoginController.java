@@ -1,8 +1,14 @@
-package main.java.com.crm.controllers;
+package com.crm.controllers;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.crm.dao.UserDao;
+import com.crm.dao.impl.DefaultUserDao;
+import com.crm.model.User;
+import com.crm.service.UserService;
+import com.crm.service.impl.UserServiceImpl;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -48,7 +54,7 @@ public class LoginController {
             registerBtn.getScene().getWindow().hide();
 
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/main/java/com/crm/view/register.fxml"));
+            loader.setLocation(getClass().getResource("/view/register.fxml"));
 
             try {
                 loader.load();
@@ -64,5 +70,49 @@ public class LoginController {
     }
 
     private void loginUser(String loginText, String passwordText) {
+        UserService userService = new UserServiceImpl();
+        boolean loggedIn = userService.login(loginText, passwordText);
+        if (loggedIn) {
+            loginBtn.setOnAction(event -> {
+                loginBtn.getScene().getWindow().hide();
+                String url = "";
+                FXMLLoader loader = new FXMLLoader();
+                if (loginText.equals("admin@admin.com")) {
+                    url = "/view/user_menu.fxml";
+                } else {
+                    url = "/view/admin_menu.fxml";
+                }
+                loader.setLocation(getClass().getResource(url));
+                try {
+                    loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Parent root = loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.showAndWait();
+            });
+        }
     }
+
+
+//    private void loginUser(String loginText, String passwordText) throws SQLException {
+//        DatabaseHandler dbHandler = new DatabaseHandler();
+//        User user = User.builder()
+//                .email(loginText)
+//                .password(passwordText)
+//                .build();
+//        ResultSet resSet = dbHandler.getUser(user);
+//
+//        int counter = 0;
+//        while (resSet.next()) {
+//            counter++;
+//        }
+//        if (counter >= 1) {
+//            System.out.println("Login success!");
+//        }
+//
+//    }
 }

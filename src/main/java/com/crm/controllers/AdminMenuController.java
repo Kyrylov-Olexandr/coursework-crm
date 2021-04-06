@@ -1,4 +1,4 @@
-package main.java.com.crm.controllers;
+package com.crm.controllers;
 
 public class AdminMenuController {
 }
