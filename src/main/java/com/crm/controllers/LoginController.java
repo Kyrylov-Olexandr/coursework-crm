@@ -94,22 +94,4 @@ public class LoginController {
         }
     }
 
-
-//    private void loginUser(String loginText, String passwordText) throws SQLException {
-//        DatabaseHandler dbHandler = new DatabaseHandler();
-//        User user = User.builder()
-//                .email(loginText)
-//                .password(passwordText)
-//                .build();
-//        ResultSet resSet = dbHandler.getUser(user);
-//
-//        int counter = 0;
-//        while (resSet.next()) {
-//            counter++;
-//        }
-//        if (counter >= 1) {
-//            System.out.println("Login success!");
-//        }
-//
-//    }
 }
