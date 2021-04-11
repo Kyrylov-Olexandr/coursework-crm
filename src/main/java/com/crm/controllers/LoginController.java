@@ -4,9 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.crm.dao.UserDao;
-import com.crm.dao.impl.DefaultUserDao;
-import com.crm.model.User;
 import com.crm.service.UserService;
 import com.crm.service.impl.UserServiceImpl;
 import javafx.fxml.FXML;
@@ -75,7 +72,7 @@ public class LoginController {
         if (loggedIn) {
             loginBtn.setOnAction(event -> {
                 loginBtn.getScene().getWindow().hide();
-                String url = "";
+                String url;
                 FXMLLoader loader = new FXMLLoader();
                 if (loginText.equals("admin@admin.com")) {
                     url = "/view/user_menu.fxml";

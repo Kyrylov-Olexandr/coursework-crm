@@ -1,6 +1,6 @@
 package com.crm.service;
 
-import com.crm.model.User;
+import com.crm.models.User;
 
 public interface UserService {
     boolean login(String email, String password);
