@@ -19,8 +19,8 @@
         <property name="hibernate.connection.CharSet">utf8</property>
         <property name="hibernate.connection.characterEncoding">utf8</property>
         <property name="hibernate.connection.useUnicode">true</property>
-        <mapping class="com.crm.models.User"/>
-        <mapping class="com.crm.models.Order"/>
-        <mapping class="com.crm.models.Product"/>
+        <mapping class="com.crm.entities.User"/>
+        <mapping class="com.crm.entities.Order"/>
+        <mapping class="com.crm.entities.Product"/>
     </session-factory>
 </hibernate-configuration>

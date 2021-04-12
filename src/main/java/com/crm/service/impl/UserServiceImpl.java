@@ -1,17 +1,22 @@
 package com.crm.service.impl;
 
-import com.crm.models.User;
+import com.crm.dao.UserDao;
+import com.crm.dao.impl.UserDaoImpl;
+import com.crm.entities.User;
 import com.crm.service.UserService;
 
-public class UserServiceImpl implements UserService {
-    @Override
-    public boolean login(String email, String password) {
+import java.util.Optional;
 
-        return false;
+public class UserServiceImpl implements UserService {
+    UserDao userDao = new UserDaoImpl();
+
+    @Override
+    public Optional<User> login(String email, String password) {
+        return userDao.getByEmailAndPassword(email, password);
     }
 
     @Override
-    public boolean register(User user) {
-        return false;
+    public void register(User user) {
+        userDao.save(user);
     }
 }

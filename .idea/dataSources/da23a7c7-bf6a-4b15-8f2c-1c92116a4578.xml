@@ -962,7 +962,7 @@ SELECT|sys.sys_config
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="301" parent="292" name="fk_order_user1">
+    <foreign-key id="301" parent="292" name="fk_order_user">
       <ColNames>user_id</ColNames>
       <RefTableName>user</RefTableName>
       <RefColNames>id</RefColNames>

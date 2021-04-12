@@ -3,12 +3,12 @@ import java.net.URL;
 import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
-import com.crm.dao.impl.UserDao;
+import com.crm.dao.impl.UserDaoImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import com.crm.models.User;
+import com.crm.entities.User;
 
 public class RegisterController {
 
@@ -46,7 +46,7 @@ public class RegisterController {
 
     @FXML
     void initialize() {
-        UserDao userDaoImpl = new UserDao();
+        UserDaoImpl userDaoImpl = new UserDaoImpl();
         registerBtn.setOnAction(event -> userDaoImpl.save(createUser()));
     }
 
@@ -58,6 +58,5 @@ public class RegisterController {
         String city = lastNameField.getText();
         Timestamp currDate = new Timestamp(System.currentTimeMillis());
         return new User.Builder(email,password,firstName,lastName,city,currDate).build();
-
     }
 }

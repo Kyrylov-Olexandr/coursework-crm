@@ -1,9 +1,11 @@
 package com.crm.service;
 
-import com.crm.models.User;
+import com.crm.entities.User;
+
+import java.util.Optional;
 
 public interface UserService {
-    boolean login(String email, String password);
+    Optional<User> login(String email, String password);
 
-    boolean register(User user);
+    void register(User user);
 }

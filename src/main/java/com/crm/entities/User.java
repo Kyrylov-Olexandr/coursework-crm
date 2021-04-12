@@ -1,17 +1,19 @@
-package com.crm.models;
+package com.crm.entities;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @Data
 @Table
 @Entity
-public class User {
+public class User extends BaseEntity{
     @Id
     private int id;
     private String email;

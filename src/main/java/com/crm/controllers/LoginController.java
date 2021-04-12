@@ -2,8 +2,11 @@ package com.crm.controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
+import com.crm.entities.User;
+import com.crm.exceptions.WrongEmailOrPassException;
 import com.crm.service.UserService;
 import com.crm.service.impl.UserServiceImpl;
 import javafx.fxml.FXML;
@@ -16,6 +19,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class LoginController {
+
+    UserService userService = new UserServiceImpl();
 
     @FXML
     private ResourceBundle resources;
@@ -67,18 +72,18 @@ public class LoginController {
     }
 
     private void loginUser(String loginText, String passwordText) {
-        UserService userService = new UserServiceImpl();
-        boolean loggedIn = userService.login(loginText, passwordText);
-        if (loggedIn) {
-            loginBtn.setOnAction(event -> {
+        loginBtn.setOnAction(event -> {
+            Optional<User> userOptional = userService.login(loginText, passwordText);
+//            try {
+//                User user = userOptional.orElseThrow(() -> new WrongEmailOrPassException("Wrong email or password"));
+//            } catch (WrongEmailOrPassException e) {
+//                e.printStackTrace();
+//            }
+            if (userOptional.isPresent()) {
                 loginBtn.getScene().getWindow().hide();
-                String url;
                 FXMLLoader loader = new FXMLLoader();
-                if (loginText.equals("admin@admin.com")) {
-                    url = "/view/user_menu.fxml";
-                } else {
-                    url = "/view/admin_menu.fxml";
-                }
+
+                String url = "/view/user_menu.fxml";
                 loader.setLocation(getClass().getResource(url));
                 try {
                     loader.load();
@@ -90,8 +95,8 @@ public class LoginController {
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
                 stage.showAndWait();
-            });
-        }
+            }
+        });
     }
-
 }
+

@@ -1,55 +1,53 @@
 package com.crm.dao.impl;
 
-import com.crm.dao.UserDaoInterface;
-import com.crm.models.Order;
-import com.crm.models.User;
+import com.crm.dao.DaoBase;
 import com.crm.utils.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.util.List;
+import java.util.Optional;
 
-public class UserDao implements UserDaoInterface {
+public abstract class DaoBaseImpl<E> implements DaoBase<E> {
+    Class<E> persistentClass;
 
     @Override
-    public User findById(int userId) {
-        return HibernateUtil.getSessionFactory().openSession().get(User.class, userId);
+    public Optional<E> findById(int userId) {
+        return Optional.of(HibernateUtil.getSessionFactory().openSession().get(persistentClass, userId));
     }
 
     @Override
-    public void save(User user) {
+    public void save(E e) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.save(user);
+        session.save(e);
         tx1.commit();
         session.close();
     }
 
     @Override
-    public void update(User user) {
+    public void update(E e) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.update(user);
+        session.update(e);
         tx1.commit();
         session.close();
     }
 
     @Override
-    public void delete(User user) {
+    public void delete(E e) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.delete(user);
+        session.delete(e);
         tx1.commit();
         session.close();
     }
 
-    @Override
-    public Order findOrderById(int userId) {
-        return HibernateUtil.getSessionFactory().openSession().get(Order.class, userId);
-    }
 
-    public List<User> findAll() {
+    @Override
+    public List<E> findAll() {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        return session.createQuery("SELECT a FROM User a", User.class).getResultList();
+        String query = "SELECT a FROM " + persistentClass.getName() + " a";
+        return session.createQuery(query, persistentClass).getResultList();
     }
 }

@@ -1,8 +1,8 @@
 package com.crm.utils;
 
-import com.crm.models.Order;
-import com.crm.models.Product;
-import com.crm.models.User;
+import com.crm.entities.Order;
+import com.crm.entities.Product;
+import com.crm.entities.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -25,7 +25,7 @@ public class HibernateUtil {
                 sessionFactory = configuration.buildSessionFactory(builder.build());
 
             } catch (Exception e) {
-                System.out.println("Исключение!" + e);
+                System.out.println("EXCEPTION: " + e);
             }
         }
         return sessionFactory;

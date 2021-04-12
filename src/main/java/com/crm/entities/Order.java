@@ -1,6 +1,7 @@
-package com.crm.models;
+package com.crm.entities;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -9,11 +10,12 @@ import java.util.List;
 
 
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
 @Table(name = "order")
 @Entity
-public class Order {
+public class Order extends BaseEntity{
     @Id
     private int id;
 
