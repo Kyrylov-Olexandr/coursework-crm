@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="698.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.crm.controllers.admin_tabs.ClientsTabController">
+   <children>
+       <TextField fx:id="clientFirstNameSearch" layoutX="51.0" layoutY="14.0" prefHeight="25.0" prefWidth="76.0" promptText="Ім'я" />
+       <TextField fx:id="clientIdSearch" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="37.0" promptText="ID" />
+       <TextField fx:id="clientLastNameSearch" layoutX="128.0" layoutY="14.0" prefHeight="25.0" prefWidth="76.0" promptText="Фамілія" />
+       <TextField fx:id="clientCompanySearch" layoutX="204.0" layoutY="14.0" prefHeight="25.0" prefWidth="76.0" promptText="Компанія" />
+       <TextField fx:id="clientCitySearch" layoutX="280.0" layoutY="14.0" prefHeight="25.0" prefWidth="76.0" promptText="Місто" />
+       <TextField fx:id="clientPhoneSearch" layoutX="356.0" layoutY="14.0" prefHeight="25.0" prefWidth="113.0" promptText="Номер" />
+       <TextField fx:id="clientEmailSearch" layoutX="469.0" layoutY="14.0" prefHeight="25.0" prefWidth="108.0" promptText="Email" />
+       <TableView fx:id="clientsTable" layoutX="14.0" layoutY="45.0" prefHeight="255.0" prefWidth="683.0">
+           <columns>
+               <TableColumn fx:id="userIdCol" prefWidth="37.0" text="id" />
+               <TableColumn fx:id="userFirstNameCol" prefWidth="75.0" text="ім'я" />
+               <TableColumn fx:id="userLastNameCol" prefWidth="77.0" text="Фамілія" />
+               <TableColumn fx:id="userCompanyNameCol" prefWidth="76.0" text="Компанія" />
+               <TableColumn fx:id="userCityCol" prefWidth="75.0" text="Місто" />
+               <TableColumn fx:id="userNumberCol" prefWidth="114.0" text="Номер телефону" />
+               <TableColumn fx:id="userEmailCol" prefWidth="108.0" text="Email" />
+               <TableColumn fx:id="userCreatedDateCol" prefWidth="120.0" text="Дата створення" />
+           </columns>
+       </TableView>
+       <Button fx:id="findUserBtn" layoutX="583.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="56.0" text="Знайти" />
+      <Button fx:id="refreshUserTableBtn" layoutX="640.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="44.0" text="Оновити" />
+   </children>
+</AnchorPane>

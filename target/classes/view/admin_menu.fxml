@@ -6,6 +6,117 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.*?>
 
+<!--<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #2E3348;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.crm.controllers.AdminMenuController">-->
+<!--    <children>-->
+<!--        <AnchorPane layoutY="88.0" prefHeight="312.0" prefWidth="700.0" style="-fx-background-color: #fafafa;">-->
+<!--            <children>-->
+<!--                <TabPane layoutY="-29.0" prefHeight="341.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE">-->
+<!--                    <tabs>-->
+<!--                        <Tab text="Каталог">-->
+<!--                            <content>-->
+<!--                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">-->
+<!--                                    <children>-->
+<!--                                        <ListView fx:id="catalogList" layoutX="14.0" layoutY="51.0" prefHeight="250.0" prefWidth="664.0" style="-fx-border-color: gray;" />-->
+<!--                                        <TextField fx:id="searchField" layoutX="14.0" layoutY="14.0" promptText="Пошук" style="-fx-border-color: gray;" />-->
+<!--                                        <Button fx:id="catalogSearchBtn" layoutX="175.0" layoutY="15.0" mnemonicParsing="false" text="Знайти" />-->
+<!--                                        <Button fx:id="bucketBtn" layoutX="625.0" layoutY="15.0" mnemonicParsing="false" text="Кошик" />-->
+<!--                                    </children>-->
+<!--                                </AnchorPane>-->
+<!--                            </content>-->
+<!--                        </Tab>-->
+<!--                        <Tab text="Замовлення">-->
+<!--                            <content>-->
+<!--                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">-->
+<!--                                    <children>-->
+<!--                                        <ListView fx:id="orderList" layoutX="15.0" layoutY="49.0" prefHeight="253.0" prefWidth="670.0" style="-fx-border-color: grey;" />-->
+<!--                              <Button fx:id="orderDeleteBtn" layoutX="617.0" layoutY="15.0" mnemonicParsing="false" text="Видалити" />-->
+<!--                              <Button fx:id="orderCreateBtn" layoutX="534.0" layoutY="15.0" mnemonicParsing="false" text="Створити" />-->
+<!--                              <TextField fx:id="orderSearchField" layoutX="14.0" layoutY="14.0" promptText="Пошук" style="-fx-border-color: grey;" />-->
+<!--                              <ComboBox fx:id="orderCategoryComboBox" layoutX="171.0" layoutY="14.0" prefWidth="150.0" style="-fx-border-color: grey;" />-->
+<!--                                    </children>-->
+<!--                                </AnchorPane>-->
+<!--                            </content>-->
+<!--                        </Tab>-->
+<!--                  <Tab text="Документи">-->
+<!--                    <content>-->
+<!--                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">-->
+<!--                           <children>-->
+<!--                              <ListView fx:id="docsOrderList" layoutX="12.0" layoutY="56.0" prefHeight="240.0" prefWidth="309.0" style="-fx-border-color: grey;" />-->
+<!--                              <TextField fx:id="docsOrderNumber" layoutX="179.0" layoutY="15.0" prefHeight="27.0" prefWidth="37.0" style="-fx-border-color: grey;" />-->
+<!--                              <Text layoutX="41.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Номер замовлення">-->
+<!--                                 <font>-->
+<!--                                    <Font name="Arial" size="14.0" />-->
+<!--                                 </font>-->
+<!--                              </Text>-->
+<!--                              <ListView fx:id="docsSelectedOrderList" layoutX="377.0" layoutY="56.0" prefHeight="243.0" prefWidth="309.0" style="-fx-border-color: grey;" />-->
+<!--                              <Button fx:id="docsSelectBtn" layoutX="330.0" layoutY="113.0" mnemonicParsing="false" text="&gt;&gt;&gt;" />-->
+<!--                              <Button fx:id="docsRemoveBtn" layoutX="330.0" layoutY="156.0" mnemonicParsing="false" text="&lt;&lt;&lt;" />-->
+<!--                              <Button fx:id="docsClearBtn" layoutX="617.0" layoutY="24.0" mnemonicParsing="false" text="Очистити" />-->
+<!--                              <Button fx:id="docsGenerateBtn" layoutX="377.0" layoutY="24.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" text="Сформувати накладну" />-->
+<!--                           </children>-->
+<!--                        </AnchorPane>-->
+<!--                    </content>-->
+<!--                  </Tab>-->
+<!--                  <Tab text="Склад">-->
+<!--                    <content>-->
+<!--                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />-->
+<!--                    </content>-->
+<!--                  </Tab>-->
+<!--                  <Tab text="База клієнтів">-->
+<!--                    <content>-->
+<!--                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">-->
+<!--                           <children>-->
+<!--                              <TextField fx:id="clientFirstNameSearch" layoutX="51.0" layoutY="14.0" prefHeight="25.0" prefWidth="76.0" promptText="Ім'я" />-->
+<!--                              <TextField fx:id="clientIdSearch" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="37.0" promptText="ID" />-->
+<!--                              <TextField fx:id="clientLastNameSearch" layoutX="128.0" layoutY="14.0" prefHeight="25.0" prefWidth="76.0" promptText="Фамілія" />-->
+<!--                              <TextField fx:id="clientCompanySearch" layoutX="204.0" layoutY="14.0" prefHeight="25.0" prefWidth="76.0" promptText="Компанія" />-->
+<!--                              <TextField fx:id="clientCitySearch" layoutX="280.0" layoutY="14.0" prefHeight="25.0" prefWidth="76.0" promptText="Місто" />-->
+<!--                              <TextField fx:id="clientPhoneSearch" layoutX="356.0" layoutY="14.0" prefHeight="25.0" prefWidth="113.0" promptText="Номер" />-->
+<!--                              <TextField fx:id="clientEmailSearch" layoutX="469.0" layoutY="14.0" prefHeight="25.0" prefWidth="108.0" promptText="Email" />-->
+<!--                              <TableView layoutX="14.0" layoutY="45.0" prefHeight="255.0" prefWidth="683.0">-->
+<!--                                <columns>-->
+<!--                                  <TableColumn fx:id="userIdCol" prefWidth="37.0" text="id" />-->
+<!--                                  <TableColumn fx:id="userFirlsNameCol" prefWidth="75.0" text="ім'я" />-->
+<!--                                    <TableColumn fx:id="userLastNameCol" prefWidth="77.0" text="Фамілія" />-->
+<!--                                    <TableColumn fx:id="userCompanyNameCol" prefWidth="76.0" text="Компанія" />-->
+<!--                                    <TableColumn fx:id="userCityCol" prefWidth="75.0" text="Місто" />-->
+<!--                                    <TableColumn fx:id="userNumberCol" prefWidth="114.0" text="Номер телефону" />-->
+<!--                                    <TableColumn fx:id="userEmailCol" prefWidth="108.0" text="Email" />-->
+<!--                                    <TableColumn fx:id="userCreatedDateCol" prefWidth="120.0" text="Дата створення" />-->
+<!--                                </columns>-->
+<!--                              </TableView>-->
+<!--                              <Button fx:id="findUserBtn" layoutX="583.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" text="Знайти" />-->
+<!--                           </children></AnchorPane>-->
+<!--                    </content>-->
+<!--                  </Tab>-->
+<!--                  <Tab text="Реклама">-->
+<!--                    <content>-->
+<!--                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">-->
+<!--                           <children>-->
+<!--                              <Button layoutX="15.0" layoutY="21.0" mnemonicParsing="false" style="-fx-border-color: grey;" text="Розіслати" />-->
+<!--                              <TextArea layoutX="15.0" layoutY="63.0" prefHeight="234.0" prefWidth="661.0" style="-fx-border-color: grey;" />-->
+<!--                              <Button layoutX="103.0" layoutY="21.0" mnemonicParsing="false" style="-fx-border-color: grey;" text="Очистити" />-->
+<!--                           </children>-->
+<!--                        </AnchorPane>-->
+<!--                    </content>-->
+<!--                  </Tab>-->
+<!--                    </tabs>-->
+<!--                </TabPane>-->
+<!--            </children>-->
+<!--        </AnchorPane>-->
+<!--        <Label layoutX="218.0" text="Євробудсвіт" textFill="WHITE">-->
+<!--            <font>-->
+<!--                <Font name="Arial Bold" size="42.0" />-->
+<!--            </font>-->
+<!--        </Label>-->
+<!--        <Button fx:id="logoutBtn" layoutX="599.0" layoutY="8.0" mnemonicParsing="false" style="-fx-background-color: #F39C63;" text="Вийти" textFill="WHITE">-->
+<!--            <font>-->
+<!--                <Font name="Arial Bold" size="17.0" />-->
+<!--            </font>-->
+<!--        </Button>-->
+<!--    </children>-->
+<!--</AnchorPane>-->
+
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #2E3348;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.crm.controllers.AdminMenuController">
     <children>
         <AnchorPane layoutY="88.0" prefHeight="312.0" prefWidth="700.0" style="-fx-background-color: #fafafa;">
@@ -29,55 +140,55 @@
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                     <children>
                                         <ListView fx:id="orderList" layoutX="15.0" layoutY="49.0" prefHeight="253.0" prefWidth="670.0" style="-fx-border-color: grey;" />
-                              <Button fx:id="orderDeleteBtn" layoutX="617.0" layoutY="15.0" mnemonicParsing="false" text="Видалити" />
-                              <Button fx:id="orderCreateBtn" layoutX="534.0" layoutY="15.0" mnemonicParsing="false" text="Створити" />
-                              <TextField fx:id="orderSearchField" layoutX="14.0" layoutY="14.0" promptText="Пошук" style="-fx-border-color: grey;" />
-                              <ComboBox fx:id="orderCategoryComboBox" layoutX="171.0" layoutY="14.0" prefWidth="150.0" style="-fx-border-color: grey;" />
+                                        <Button fx:id="orderDeleteBtn" layoutX="617.0" layoutY="15.0" mnemonicParsing="false" text="Видалити" />
+                                        <Button fx:id="orderCreateBtn" layoutX="534.0" layoutY="15.0" mnemonicParsing="false" text="Створити" />
+                                        <TextField fx:id="orderSearchField" layoutX="14.0" layoutY="14.0" promptText="Пошук" style="-fx-border-color: grey;" />
+                                        <ComboBox fx:id="orderCategoryComboBox" layoutX="171.0" layoutY="14.0" prefWidth="150.0" style="-fx-border-color: grey;" />
                                     </children>
                                 </AnchorPane>
                             </content>
                         </Tab>
-                  <Tab text="Документи">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <ListView fx:id="docsOrderList" layoutX="12.0" layoutY="56.0" prefHeight="240.0" prefWidth="309.0" style="-fx-border-color: grey;" />
-                              <TextField fx:id="docsOrderNumber" layoutX="179.0" layoutY="15.0" prefHeight="27.0" prefWidth="37.0" style="-fx-border-color: grey;" />
-                              <Text layoutX="41.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Номер замовлення">
-                                 <font>
-                                    <Font name="Arial" size="14.0" />
-                                 </font>
-                              </Text>
-                              <ListView fx:id="docsSelectedOrderList" layoutX="377.0" layoutY="56.0" prefHeight="243.0" prefWidth="309.0" style="-fx-border-color: grey;" />
-                              <Button fx:id="docsSelectBtn" layoutX="330.0" layoutY="113.0" mnemonicParsing="false" text="&gt;&gt;&gt;" />
-                              <Button fx:id="docsRemoveBtn" layoutX="330.0" layoutY="156.0" mnemonicParsing="false" text="&lt;&lt;&lt;" />
-                              <Button fx:id="docsClearBtn" layoutX="617.0" layoutY="24.0" mnemonicParsing="false" text="Очистити" />
-                              <Button fx:id="docsGenerateBtn" layoutX="377.0" layoutY="24.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" text="Сформувати накладну" />
-                           </children>
-                        </AnchorPane>
-                    </content>
-                  </Tab>
-                  <Tab text="Склад">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                    </content>
-                  </Tab>
-                  <Tab text="База клієнтів">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                    </content>
-                  </Tab>
-                  <Tab text="Реклама">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <Button layoutX="15.0" layoutY="21.0" mnemonicParsing="false" style="-fx-border-color: grey;" text="Розіслати" />
-                              <TextArea layoutX="15.0" layoutY="63.0" prefHeight="234.0" prefWidth="661.0" style="-fx-border-color: grey;" />
-                              <Button layoutX="103.0" layoutY="21.0" mnemonicParsing="false" style="-fx-border-color: grey;" text="Очистити" />
-                           </children>
-                        </AnchorPane>
-                    </content>
-                  </Tab>
+                        <Tab text="Документи">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <ListView fx:id="docsOrderList" layoutX="12.0" layoutY="56.0" prefHeight="240.0" prefWidth="309.0" style="-fx-border-color: grey;" />
+                                        <TextField fx:id="docsOrderNumber" layoutX="179.0" layoutY="15.0" prefHeight="27.0" prefWidth="37.0" style="-fx-border-color: grey;" />
+                                        <Text layoutX="41.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Номер замовлення">
+                                            <font>
+                                                <Font name="Arial" size="14.0" />
+                                            </font>
+                                        </Text>
+                                        <ListView fx:id="docsSelectedOrderList" layoutX="377.0" layoutY="56.0" prefHeight="243.0" prefWidth="309.0" style="-fx-border-color: grey;" />
+                                        <Button fx:id="docsSelectBtn" layoutX="330.0" layoutY="113.0" mnemonicParsing="false" text="&gt;&gt;&gt;" />
+                                        <Button fx:id="docsRemoveBtn" layoutX="330.0" layoutY="156.0" mnemonicParsing="false" text="&lt;&lt;&lt;" />
+                                        <Button fx:id="docsClearBtn" layoutX="617.0" layoutY="24.0" mnemonicParsing="false" text="Очистити" />
+                                        <Button fx:id="docsGenerateBtn" layoutX="377.0" layoutY="24.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" text="Сформувати накладну" />
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Склад">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                            </content>
+                        </Tab>
+                        <Tab text="База клієнтів">
+                            <content>
+                                <fx:include fx:id="clientsTab" source="admin_tabs/clientsTab.fxml"/>
+                            </content>
+                        </Tab>
+                        <Tab text="Реклама">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <Button layoutX="15.0" layoutY="21.0" mnemonicParsing="false" style="-fx-border-color: grey;" text="Розіслати" />
+                                        <TextArea layoutX="15.0" layoutY="63.0" prefHeight="234.0" prefWidth="661.0" style="-fx-border-color: grey;" />
+                                        <Button layoutX="103.0" layoutY="21.0" mnemonicParsing="false" style="-fx-border-color: grey;" text="Очистити" />
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
                     </tabs>
                 </TabPane>
             </children>

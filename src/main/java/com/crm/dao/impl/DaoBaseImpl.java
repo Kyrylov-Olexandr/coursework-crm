@@ -1,9 +1,11 @@
 package com.crm.dao.impl;
 
 import com.crm.dao.DaoBase;
+import com.crm.entities.User;
 import com.crm.utils.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.util.List;
 import java.util.Optional;
@@ -46,8 +48,12 @@ public abstract class DaoBaseImpl<E> implements DaoBase<E> {
 
     @Override
     public List<E> findAll() {
+//        Session session = HibernateUtil.getSessionFactory().openSession();
+//        String query = "SELECT a FROM " + persistentClass.getName() + " a";
+//        return session.createQuery(query, persistentClass).getResultList();
         Session session = HibernateUtil.getSessionFactory().openSession();
-        String query = "SELECT a FROM " + persistentClass.getName() + " a";
-        return session.createQuery(query, persistentClass).getResultList();
+        Query query = session.createQuery("FROM User");
+        List users = query.list();
+        return users;
     }
 }

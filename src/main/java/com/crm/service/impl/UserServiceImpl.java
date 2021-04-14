@@ -5,18 +5,25 @@ import com.crm.dao.impl.UserDaoImpl;
 import com.crm.entities.User;
 import com.crm.service.UserService;
 
+import java.util.List;
 import java.util.Optional;
 
 public class UserServiceImpl implements UserService {
-    UserDao userDao = new UserDaoImpl();
+    private final UserDao USER_DAO = new UserDaoImpl();
 
     @Override
-    public Optional<User> login(String email, String password) {
-        return userDao.getByEmailAndPassword(email, password);
+    public Optional<User> getByEmailAndPassword(String email, String password) {
+        return USER_DAO.getByEmailAndPassword(email, password);
     }
 
     @Override
     public void register(User user) {
-        userDao.save(user);
+        USER_DAO.save(user);
     }
+
+    @Override
+    public List<User> findAll() {
+        return USER_DAO.findAll();
+    }
+
 }

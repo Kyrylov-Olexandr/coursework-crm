@@ -1,14 +1,23 @@
 package com.crm.controllers;
-import java.net.URL;
-import java.sql.Timestamp;
-import java.util.ResourceBundle;
 
-import com.crm.dao.impl.UserDaoImpl;
+import com.crm.entities.User;
+import com.crm.service.UserService;
+import com.crm.service.impl.UserServiceImpl;
+import com.crm.utils.HibernateUtil;
+import com.crm.utils.JavaFxUtil;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import com.crm.entities.User;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.net.URL;
+import java.sql.Timestamp;
+import java.util.ResourceBundle;
 
 public class RegisterController {
 
@@ -42,12 +51,15 @@ public class RegisterController {
     @FXML
     private TextField firstNameField;
 
+    private final String LOGIN_WINDOW_URL = "/view/login.fxml";
 
+    private final UserService USER_SERVICE = new UserServiceImpl();
 
     @FXML
     void initialize() {
-        UserDaoImpl userDaoImpl = new UserDaoImpl();
-        registerBtn.setOnAction(event -> userDaoImpl.save(createUser()));
+        registerBtn.setOnAction(event -> USER_SERVICE.register(createUser()));
+
+        loginBtn.setOnAction(event -> JavaFxUtil.openUrl(event, LOGIN_WINDOW_URL));
     }
 
     private User createUser() {
@@ -59,4 +71,5 @@ public class RegisterController {
         Timestamp currDate = new Timestamp(System.currentTimeMillis());
         return new User.Builder(email,password,firstName,lastName,city,currDate).build();
     }
+
 }
