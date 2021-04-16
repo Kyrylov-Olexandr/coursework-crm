@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class JavaFxUtil {
 
@@ -30,5 +31,31 @@ public class JavaFxUtil {
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.showAndWait();
+    }
+
+    public static ArrayList<Node> getAllNodes(String url) {
+        Parent root = getParentRootByUrl(url);
+        ArrayList<Node> nodes = new ArrayList<>();
+        assert root != null;
+        addAllDescendents(root, nodes);
+        return nodes;
+    }
+
+    private static void addAllDescendents(Parent parent, ArrayList<Node> nodes) {
+        for (Node node : parent.getChildrenUnmodifiable()) {
+            nodes.add(node);
+            if (node instanceof Parent)
+                addAllDescendents((Parent)node, nodes);
+        }
+    }
+
+    public static Parent getParentRootByUrl(String url) {
+        FXMLLoader loader = new FXMLLoader(JavaFxUtil.class.getResource(url));
+        try {
+            return loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
