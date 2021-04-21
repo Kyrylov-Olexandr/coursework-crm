@@ -12,10 +12,8 @@ import java.util.Optional;
 
 public class UserDaoImpl extends DaoBaseImpl<User> implements UserDao {
 
-
-    @Override
-    public Order findOrderById(int userId) {
-        return HibernateUtil.getSessionFactory().openSession().get(Order.class, userId);
+    public UserDaoImpl(Class<User> type) {
+        super(type);
     }
 
     @Override
@@ -31,9 +29,6 @@ public class UserDaoImpl extends DaoBaseImpl<User> implements UserDao {
                 : Optional.of(resultList.get(0));
     }
 
-//    @Override
-//    public List<User> findAll() {
-//        return null;
-//    }
+
 }
 

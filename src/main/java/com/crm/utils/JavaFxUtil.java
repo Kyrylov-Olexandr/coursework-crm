@@ -1,5 +1,9 @@
 package com.crm.utils;
 
+import com.crm.entities.BaseEntity;
+import com.crm.entities.Order;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -9,6 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class JavaFxUtil {
 
@@ -33,29 +38,4 @@ public class JavaFxUtil {
         stage.showAndWait();
     }
 
-    public static ArrayList<Node> getAllNodes(String url) {
-        Parent root = getParentRootByUrl(url);
-        ArrayList<Node> nodes = new ArrayList<>();
-        assert root != null;
-        addAllDescendents(root, nodes);
-        return nodes;
-    }
-
-    private static void addAllDescendents(Parent parent, ArrayList<Node> nodes) {
-        for (Node node : parent.getChildrenUnmodifiable()) {
-            nodes.add(node);
-            if (node instanceof Parent)
-                addAllDescendents((Parent)node, nodes);
-        }
-    }
-
-    public static Parent getParentRootByUrl(String url) {
-        FXMLLoader loader = new FXMLLoader(JavaFxUtil.class.getResource(url));
-        try {
-            return loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 }

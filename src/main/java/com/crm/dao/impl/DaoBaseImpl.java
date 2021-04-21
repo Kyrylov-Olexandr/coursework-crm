@@ -1,7 +1,6 @@
 package com.crm.dao.impl;
 
 import com.crm.dao.DaoBase;
-import com.crm.entities.User;
 import com.crm.utils.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -11,11 +10,21 @@ import java.util.List;
 import java.util.Optional;
 
 public abstract class DaoBaseImpl<E> implements DaoBase<E> {
-    Class<E> persistentClass;
+
+    private final Class<E> type;
+
+    public DaoBaseImpl(Class<E> type) {
+        this.type = type;
+    }
+
+//    public Class<E> getMyType() {
+//        return this.type;
+//    }
+
 
     @Override
-    public Optional<E> findById(int userId) {
-        return Optional.of(HibernateUtil.getSessionFactory().openSession().get(persistentClass, userId));
+    public Optional<E> findById(int id) {
+        return Optional.of(HibernateUtil.getSessionFactory().openSession().get(type, id));
     }
 
     @Override
@@ -48,11 +57,8 @@ public abstract class DaoBaseImpl<E> implements DaoBase<E> {
 
     @Override
     public List<E> findAll() {
-//        Session session = HibernateUtil.getSessionFactory().openSession();
-//        String query = "SELECT a FROM " + persistentClass.getName() + " a";
-//        return session.createQuery(query, persistentClass).getResultList();
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Query query = session.createQuery("FROM User");
+        Query query = session.createQuery("FROM " + type.getSimpleName());
         List users = query.list();
         return users;
     }

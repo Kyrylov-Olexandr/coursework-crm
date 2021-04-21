@@ -22,6 +22,7 @@ public class Product extends BaseEntity{
     private String name;
     private String description;
     private BigDecimal price;
+    private Integer amount;
 
     @ManyToMany(mappedBy = "products")
     private List<Order> orders;

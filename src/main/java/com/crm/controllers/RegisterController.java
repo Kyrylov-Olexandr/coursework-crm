@@ -69,7 +69,16 @@ public class RegisterController {
         String lastName = lastNameField.getText();
         String city = lastNameField.getText();
         Timestamp currDate = new Timestamp(System.currentTimeMillis());
-        return new User.Builder(email,password,firstName,lastName,city,currDate).build();
+        User newUser = new User();
+        newUser.setEmail(email);
+        newUser.setPassword(password);
+        newUser.setFirstName(firstName);
+        newUser.setLastName(lastName);
+        newUser.setCity(city);
+        newUser.setCreatedDate(currDate);
+        newUser.setRole("USER");
+        return newUser;
+//        return new User.Builder(email,password,firstName,lastName,city,currDate).build();
     }
 
 }

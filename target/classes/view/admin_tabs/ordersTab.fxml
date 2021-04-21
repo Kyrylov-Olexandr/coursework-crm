@@ -6,9 +6,26 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.admin_tabs.Orders"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.crm.controllers.admin_tabs.OrdersTabController">
+   <children>
+      <TableView fx:id="ordersTable" layoutX="5.0" layoutY="38.0" prefHeight="259.0" prefWidth="268.0">
+        <columns>
+          <TableColumn fx:id="orderIdCol" prefWidth="48.0" text="ID зам." />
+            <TableColumn fx:id="userIdCol" prefWidth="84.0" text="ID кл." />
+            <TableColumn fx:id="createdDateCol" prefWidth="134.0" text="Дата" />
+        </columns>
+      </TableView>
+      <TextField fx:id="searchByIdField" layoutX="6.0" layoutY="13.0" prefHeight="25.0" prefWidth="47.0" promptText="ID" />
+      <TextField fx:id="searchField" layoutX="53.0" layoutY="13.0" prefHeight="25.0" prefWidth="221.0" promptText="Пошук" />
+      <Button fx:id="refreshBtn" layoutX="622.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" text="Оновити" />
+      <TableView fx:id="productTable" layoutX="286.0" layoutY="38.0" prefHeight="259.0" prefWidth="412.0">
+        <columns>
+            <TableColumn fx:id="productAmountCol1" prefWidth="48.0" text="ID" />
+          <TableColumn fx:id="productNameCol" prefWidth="215.0" text="Назва продукта" />
+          <TableColumn fx:id="productAmountCol" prefWidth="72.0" text="Кількість" />
+            <TableColumn fx:id="productAmountCol11" prefWidth="74.0" text="Ціна" />
+        </columns>
+      </TableView>
+      <Button fx:id="showProductsBtn" layoutX="286.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" text="Огляд" />
+   </children>
 </AnchorPane>

@@ -11,15 +11,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="698.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.crm.controllers.admin_tabs.ClientsTabController">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.crm.controllers.admin_tabs.ClientsTabController">
    <children>
-       <TextField fx:id="clientFirstNameSearch" layoutX="51.0" layoutY="14.0" prefHeight="25.0" prefWidth="76.0" promptText="Ім'я" />
+       <TextField fx:id="searchField" layoutX="51.0" layoutY="14.0" prefHeight="25.0" prefWidth="253.0" promptText="Пошук" />
        <TextField fx:id="clientIdSearch" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="37.0" promptText="ID" />
-       <TextField fx:id="clientLastNameSearch" layoutX="128.0" layoutY="14.0" prefHeight="25.0" prefWidth="76.0" promptText="Фамілія" />
-       <TextField fx:id="clientCompanySearch" layoutX="204.0" layoutY="14.0" prefHeight="25.0" prefWidth="76.0" promptText="Компанія" />
-       <TextField fx:id="clientCitySearch" layoutX="280.0" layoutY="14.0" prefHeight="25.0" prefWidth="76.0" promptText="Місто" />
-       <TextField fx:id="clientPhoneSearch" layoutX="356.0" layoutY="14.0" prefHeight="25.0" prefWidth="113.0" promptText="Номер" />
-       <TextField fx:id="clientEmailSearch" layoutX="469.0" layoutY="14.0" prefHeight="25.0" prefWidth="108.0" promptText="Email" />
        <TableView fx:id="clientsTable" layoutX="14.0" layoutY="45.0" prefHeight="255.0" prefWidth="683.0">
            <columns>
                <TableColumn fx:id="userIdCol" prefWidth="37.0" text="id" />
@@ -32,7 +27,6 @@
                <TableColumn fx:id="userCreatedDateCol" prefWidth="120.0" text="Дата створення" />
            </columns>
        </TableView>
-       <Button fx:id="findUserBtn" layoutX="583.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="56.0" text="Знайти" />
-      <Button fx:id="refreshUserTableBtn" layoutX="640.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="44.0" text="Оновити" />
+      <Button fx:id="refreshUserTableBtn" layoutX="602.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Оновити" />
    </children>
 </AnchorPane>
