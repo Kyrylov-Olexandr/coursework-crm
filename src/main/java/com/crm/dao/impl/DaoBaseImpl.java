@@ -59,7 +59,6 @@ public abstract class DaoBaseImpl<E> implements DaoBase<E> {
     public List<E> findAll() {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Query query = session.createQuery("FROM " + type.getSimpleName());
-        List users = query.list();
-        return users;
+        return query.list();
     }
 }

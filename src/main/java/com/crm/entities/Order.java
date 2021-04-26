@@ -8,45 +8,41 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
 
-
-
 @EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
 @Table(name = "orders")
 @Entity
-@SecondaryTable(name = "order_product", pkJoinColumns = @PrimaryKeyJoinColumn(name = "order_id"))
 public class Order extends BaseEntity{
+
     @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "user_id")
-    private int userId;
-
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", referencedColumnName = "id", insertable=false, updatable=false)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
     @Column(name = "created_date")
     private Timestamp createdDate;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "order_product",
-            joinColumns = @JoinColumn(name = "order_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id")
-    )
-    private List<Product> products;
+    @OneToMany(mappedBy = "order")
+    private List<OrderItem> orderItems;
 
-    @Column(table = "order_product")
-    private Integer quantity;
-
-    public void addProduct(Product product) {
-        products.add(product);
+    public void addOrderItem(OrderItem orderItem) {
+        orderItems.add(orderItem);
     }
 
-    public void removeProduct(Product product) {
-        products.remove(product);
+    public void removeOrderItem(OrderItem orderItem) {
+        orderItems.remove(orderItem);
     }
+
+    //    @ManyToMany(cascade = CascadeType.ALL)
+    //    @JoinTable(
+    //            name = "order_item",
+    //            joinColumns = @JoinColumn(name = "order_id"),
+    //            inverseJoinColumns = @JoinColumn(name = "product_id")
+    //    )
+    //    private List<Product> products;
 
 }

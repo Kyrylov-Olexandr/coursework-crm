@@ -21,66 +21,53 @@ import java.util.function.Predicate;
 public class ClientsTabController {
 
     public TextField searchField;
-    @FXML
-    private Button refreshUserTableBtn;
-    @FXML
-    private ResourceBundle resources;
-    @FXML
-    private URL location;
-    @FXML
-    private TextField clientIdSearch;
-    @FXML
-    private TableView<User> clientsTable;
-    @FXML
-    private TableColumn<User, Integer> userIdCol;
-    @FXML
-    private TableColumn<User, String> userFirstNameCol;
-    @FXML
-    private TableColumn<User, String> userLastNameCol;
-    @FXML
-    private TableColumn<User, String> userCompanyNameCol;
-    @FXML
-    private TableColumn<User, String> userCityCol;
-    @FXML
-    private TableColumn<User, String> userNumberCol;
-    @FXML
-    private TableColumn<User, String> userEmailCol;
-    @FXML
-    private TableColumn<User, String> userCreatedDateCol;
+    @FXML private Button refreshUserTableBtn;
+    @FXML private ResourceBundle resources;
+    @FXML private URL location;
+    @FXML private TextField userIdSearch;
+    @FXML private TableView<User> userTable;
+    @FXML private TableColumn<User, Integer> userIdCol;
+    @FXML private TableColumn<User, String> userFirstNameCol;
+    @FXML private TableColumn<User, String> userLastNameCol;
+    @FXML private TableColumn<User, String> userCompanyNameCol;
+    @FXML private TableColumn<User, String> userCityCol;
+    @FXML private TableColumn<User, String> userNumberCol;
+    @FXML private TableColumn<User, String> userEmailCol;
+    @FXML private TableColumn<User, String> userCreatedDateCol;
 
     private final UserService USER_SERVICE = new UserServiceImpl();
 
     @FXML
     void initialize() {
-        fillTable();
+        setUserTableCellsValueFactory();
+        fillUserTable();
         searchById();
         searchByUserFields();
-        refreshUserTable();
+        refreshUserTableBtn.setOnAction(event -> refreshUserTable());
     }
 
-    private void refreshUserTable() {
-        refreshUserTableBtn.setOnAction(event -> fillTable());
-    }
-
-    private void fillTable() {
-        ObservableList<TableColumn<User, ?>> columns = clientsTable.getColumns();
+    private void setUserTableCellsValueFactory() {
+        ObservableList<TableColumn<User, ?>> columns = userTable.getColumns();
         String[] properties = new String[]{"id", "firstName", "lastname", "companyName", "city", "phone", "email", "createdDate"};
         for (int i = 0; i < columns.size(); i++) {
             columns.get(i).setCellValueFactory(new PropertyValueFactory<>(properties[i]));
         }
-        clientsTable.setItems(getUserObservableList());
+    }
+    private void fillUserTable() {
+        ObservableList<User> usersData = FXCollections.observableArrayList(USER_SERVICE.findAll());
+        userTable.setItems(usersData);
     }
 
-    private ObservableList<User> getUserObservableList() {
-        return FXCollections.observableArrayList(USER_SERVICE.findAll());
+    private void refreshUserTable() {
+        fillUserTable();
     }
 
     private void searchByUserFields() {
-        FilteredList<User> filteredData = new FilteredList<>(clientsTable.getItems(), p -> true);
+        FilteredList<User> filteredData = new FilteredList<>(userTable.getItems(), p -> true);
         searchField.textProperty().addListener((observable, oldValue, newValue) ->
                 filteredData.setPredicate(createPredicate(newValue))
         );
-        setFilteredData(filteredData);
+        setData(filteredData);
     }
 
     private boolean searchFindsUser(User user, String searchText){
@@ -101,21 +88,21 @@ public class ClientsTabController {
     }
 
     private void searchById() {
-        FilteredList<User> filteredData = new FilteredList<>(clientsTable.getItems(), p -> true);
-        clientIdSearch.textProperty().addListener((observable, oldValue, newValue) -> {
+        FilteredList<User> filteredData = new FilteredList<>(userTable.getItems(), p -> true);
+        userIdSearch.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(user -> {
                 if (newValue == null || newValue.isEmpty()) return true;
                 return String.valueOf(user.getId()).equals(newValue);
             });
         });
-        setFilteredData(filteredData);
+        setData(filteredData);
     }
 
 
-    private void setFilteredData(FilteredList<User> filteredData) {
+    private void setData(FilteredList<User> filteredData) {
         SortedList<User> sortedData = new SortedList<>(filteredData);
-        sortedData.comparatorProperty().bind(clientsTable.comparatorProperty());
-        clientsTable.setItems(sortedData);
+        sortedData.comparatorProperty().bind(userTable.comparatorProperty());
+        userTable.setItems(sortedData);
     }
 }
 

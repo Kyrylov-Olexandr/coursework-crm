@@ -6,6 +6,7 @@ import com.crm.entities.Order;
 import com.crm.service.OrderService;
 
 import java.util.List;
+import java.util.Optional;
 
 public class OrderServiceImpl implements OrderService {
 
@@ -14,5 +15,15 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> findAll() {
         return ORDER_DAO.findAll();
+    }
+
+    @Override
+    public Optional<Order> findById(int id) {
+        return ORDER_DAO.findById(id);
+    }
+
+    @Override
+    public void delete(Order order) {
+        ORDER_DAO.delete(order);
     }
 }

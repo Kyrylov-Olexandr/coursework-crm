@@ -15,21 +15,33 @@ import java.util.List;
 @Table
 @Entity
 public class User extends BaseEntity{
+
     @Id
-    private int id = 0;
-    private String email = "";
-    private String password = "";
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    private int id;
+
+    private String email;
+
+    private String password;
+
     @Column(name = "company_name")
-    private String companyName = "";
+    private String companyName;
+
     @Column(name = "first_name")
-    private String firstName = "";
+    private String firstName;
+
     @Column(name = "last_name")
-    private String lastName = "";
+    private String lastName;
+
     @Column(name = "created_date")
     private Timestamp createdDate =  new Timestamp(System.currentTimeMillis());
+
     private String city = "";
+
     private String phone = "";
+
     private String role = "";
+
     @OneToMany(mappedBy = "user")
     private List<Order> orders;
 
@@ -40,7 +52,5 @@ public class User extends BaseEntity{
     public void removeOrder(Order order) {
         orders.remove(order);
     }
-
-
 
 }

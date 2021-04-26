@@ -22,5 +22,6 @@
         <mapping class="com.crm.entities.User"/>
         <mapping class="com.crm.entities.Order"/>
         <mapping class="com.crm.entities.Product"/>
+        <mapping class="com.crm.entities.OrderItem"/>
     </session-factory>
 </hibernate-configuration>

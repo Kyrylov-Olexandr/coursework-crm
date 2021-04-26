@@ -1,6 +1,7 @@
 package com.crm.utils;
 
 import com.crm.entities.Order;
+import com.crm.entities.OrderItem;
 import com.crm.entities.Product;
 import com.crm.entities.User;
 import org.hibernate.SessionFactory;
@@ -21,6 +22,7 @@ public class HibernateUtil {
                 configuration.addAnnotatedClass(User.class);
                 configuration.addAnnotatedClass(Order.class);
                 configuration.addAnnotatedClass(Product.class);
+                configuration.addAnnotatedClass(OrderItem.class);
                 StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
                 sessionFactory = configuration.buildSessionFactory(builder.build());
 
