@@ -14,7 +14,7 @@
 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.crm.controllers.admin_tabs.ClientsTabController">
    <children>
        <TextField fx:id="searchField" layoutX="51.0" layoutY="14.0" prefHeight="25.0" prefWidth="253.0" promptText="Пошук" />
-       <TextField fx:id="userIdSearch" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="37.0" promptText="ID" />
+       <TextField fx:id="searchByUserIdField" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="37.0" promptText="ID" />
        <TableView fx:id="userTable" layoutX="14.0" layoutY="45.0" prefHeight="255.0" prefWidth="683.0">
            <columns>
                <TableColumn fx:id="userIdCol" prefWidth="37.0" text="id" />

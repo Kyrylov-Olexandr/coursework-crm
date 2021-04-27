@@ -1,5 +1,7 @@
 package com.crm.controllers.admin_tabs;
 
+import com.crm.controllers.objects.Search;
+import com.crm.entities.Order;
 import com.crm.entities.User;
 import com.crm.service.UserService;
 import com.crm.service.impl.UserServiceImpl;
@@ -24,7 +26,7 @@ public class ClientsTabController {
     @FXML private Button refreshUserTableBtn;
     @FXML private ResourceBundle resources;
     @FXML private URL location;
-    @FXML private TextField userIdSearch;
+    @FXML private TextField searchByUserIdField;
     @FXML private TableView<User> userTable;
     @FXML private TableColumn<User, Integer> userIdCol;
     @FXML private TableColumn<User, String> userFirstNameCol;
@@ -39,14 +41,14 @@ public class ClientsTabController {
 
     @FXML
     void initialize() {
-        setUserTableCellsValueFactory();
+        setupUserTableCellsValueFactory();
         fillUserTable();
-        searchById();
-        searchByUserFields();
+        setupDynamicUserSearch();
+        setupSearchByUserId();
         refreshUserTableBtn.setOnAction(event -> refreshUserTable());
     }
 
-    private void setUserTableCellsValueFactory() {
+    private void setupUserTableCellsValueFactory() {
         ObservableList<TableColumn<User, ?>> columns = userTable.getColumns();
         String[] properties = new String[]{"id", "firstName", "lastname", "companyName", "city", "phone", "email", "createdDate"};
         for (int i = 0; i < columns.size(); i++) {
@@ -62,43 +64,21 @@ public class ClientsTabController {
         fillUserTable();
     }
 
-    private void searchByUserFields() {
-        FilteredList<User> filteredData = new FilteredList<>(userTable.getItems(), p -> true);
+    private void setupDynamicUserSearch() {
+        Search<User> search = new Search<>(userTable);
         searchField.textProperty().addListener((observable, oldValue, newValue) ->
-                filteredData.setPredicate(createPredicate(newValue))
+                search.findByEntityFields(newValue)
         );
-        setData(filteredData);
+        setData(search.getFilteredData());
     }
 
-    private boolean searchFindsUser(User user, String searchText){
-        return  (user.getFirstName().toLowerCase().contains(searchText.toLowerCase())) ||
-                (user.getLastName().toLowerCase().contains(searchText.toLowerCase())) ||
-                (user.getCity().toLowerCase().contains(searchText.toLowerCase())) ||
-                (user.getEmail().toLowerCase().contains(searchText.toLowerCase())) ||
-                (user.getCompanyName().toLowerCase().contains((searchText.toLowerCase())) ||
-                (user.getPhone().toLowerCase().contains(searchText.toLowerCase()))) ||
-                (user.getCreatedDate().toString().contains(searchText.toLowerCase()));
+    private void setupSearchByUserId() {
+        Search<User> search = new Search<>(userTable);
+        searchByUserIdField.textProperty().addListener((observable, oldValue, newValue) ->
+                search.findByFieldName("orderId", newValue)
+        );
+        setData(search.getFilteredData());
     }
-
-    private Predicate<User> createPredicate(String searchText){
-        return user -> {
-            if (searchText == null || searchText.isEmpty()) return true;
-            return searchFindsUser(user, searchText);
-        };
-    }
-
-    private void searchById() {
-        FilteredList<User> filteredData = new FilteredList<>(userTable.getItems(), p -> true);
-        userIdSearch.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(user -> {
-                if (newValue == null || newValue.isEmpty()) return true;
-                return String.valueOf(user.getId()).equals(newValue);
-            });
-        });
-        setData(filteredData);
-    }
-
-
     private void setData(FilteredList<User> filteredData) {
         SortedList<User> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(userTable.comparatorProperty());

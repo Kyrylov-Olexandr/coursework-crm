@@ -26,6 +26,8 @@ public class Order extends BaseEntity{
     @Column(name = "created_date")
     private Timestamp createdDate;
 
+    private String status;
+
     @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems;
 
@@ -45,4 +47,14 @@ public class Order extends BaseEntity{
     //    )
     //    private List<Product> products;
 
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderId=" + id +
+                ", user=" + user.toString() +
+                ", createdDate=" + createdDate +
+                ", status=" + status +
+                '}';
+    }
 }

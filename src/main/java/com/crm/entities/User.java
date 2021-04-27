@@ -53,4 +53,19 @@ public class User extends BaseEntity{
         orders.remove(order);
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + id +
+                ", email=" + email +
+                ", password=" + password +
+                ", companyName=" + companyName +
+                ", firstName=" + firstName +
+                ", lastName=" + lastName+
+                ", createdDate=" + createdDate.toString() +
+                ", city=" + city+
+                ", phone=" + phone +
+                ", role=" + role +
+                '}';
+    }
 }
