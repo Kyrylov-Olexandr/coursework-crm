@@ -7,6 +7,7 @@ import com.crm.utils.HibernateUtil;
 import com.crm.utils.JavaFxUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -21,35 +22,16 @@ import java.util.ResourceBundle;
 
 public class RegisterController {
 
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    private PasswordField repPasswordField;
-
-    @FXML
-    private Button registerBtn;
-
-    @FXML
-    private Button loginBtn;
-
-    @FXML
-    private TextField cityField;
-
-    @FXML
-    private TextField emailField;
-
-    @FXML
-    private PasswordField passwordField;
-
-    @FXML
-    private TextField lastNameField;
-
-    @FXML
-    private TextField firstNameField;
+   @FXML private ResourceBundle resources;
+   @FXML private URL location;
+   @FXML private PasswordField repPasswordField;
+   @FXML private Button registerBtn;
+   @FXML private Button loginBtn;
+   @FXML private TextField cityField;
+   @FXML private TextField emailField;
+   @FXML private PasswordField passwordField;
+   @FXML private TextField lastNameField;
+   @FXML private TextField firstNameField;
 
     private final String LOGIN_WINDOW_URL = "/view/login.fxml";
 
@@ -59,7 +41,11 @@ public class RegisterController {
     void initialize() {
         registerBtn.setOnAction(event -> USER_SERVICE.register(createUser()));
 
-        loginBtn.setOnAction(event -> JavaFxUtil.openUrl(event, LOGIN_WINDOW_URL));
+        loginBtn.setOnAction(event -> {
+            Node node = (Node) event.getSource();
+            node.getScene().getWindow().hide();
+            JavaFxUtil.openUrl(LOGIN_WINDOW_URL);
+        });
     }
 
     private User createUser() {
@@ -67,7 +53,7 @@ public class RegisterController {
         String password = passwordField.getText();
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
-        String city = lastNameField.getText();
+        String city = cityField.getText();
         Timestamp currDate = new Timestamp(System.currentTimeMillis());
         User newUser = new User();
         newUser.setEmail(email);

@@ -5,6 +5,7 @@ import com.crm.entities.Order;
 import com.crm.entities.User;
 import com.crm.utils.HibernateUtil;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.util.List;
@@ -24,11 +25,20 @@ public class UserDaoImpl extends DaoBaseImpl<User> implements UserDao {
         query.setParameter("email", userEmail);
         query.setParameter("password", userPassword);
         List<User> resultList = query.getResultList();
+        session.close();
         return resultList.isEmpty()
                 ? Optional.empty()
                 : Optional.of(resultList.get(0));
     }
 
+//    @Override
+//    public void update(User user) {
+//        Session session = HibernateUtil.getSessionFactory().getCurrentSession()
+//        Transaction tx1 = session.beginTransaction();
+//        session.update(user);
+//        tx1.commit();
+//        session.close();
+//    }
 
 }
 

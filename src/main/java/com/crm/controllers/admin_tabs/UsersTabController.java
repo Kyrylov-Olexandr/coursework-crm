@@ -20,7 +20,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
-public class ClientsTabController {
+public class UsersTabController {
 
     public TextField searchField;
     @FXML private Button refreshUserTableBtn;
@@ -38,11 +38,13 @@ public class ClientsTabController {
     @FXML private TableColumn<User, String> userCreatedDateCol;
 
     private final UserService USER_SERVICE = new UserServiceImpl();
+    private Search<User> search;
 
     @FXML
     void initialize() {
         setupUserTableCellsValueFactory();
         fillUserTable();
+        search = new Search<>(userTable);
         setupDynamicUserSearch();
         setupSearchByUserId();
         refreshUserTableBtn.setOnAction(event -> refreshUserTable());
@@ -50,11 +52,12 @@ public class ClientsTabController {
 
     private void setupUserTableCellsValueFactory() {
         ObservableList<TableColumn<User, ?>> columns = userTable.getColumns();
-        String[] properties = new String[]{"id", "firstName", "lastname", "companyName", "city", "phone", "email", "createdDate"};
+        String[] properties = new String[]{"id", "firstName", "lastName", "companyName", "city", "phone", "email", "createdDate"};
         for (int i = 0; i < columns.size(); i++) {
             columns.get(i).setCellValueFactory(new PropertyValueFactory<>(properties[i]));
         }
     }
+
     private void fillUserTable() {
         ObservableList<User> usersData = FXCollections.observableArrayList(USER_SERVICE.findAll());
         userTable.setItems(usersData);
@@ -65,7 +68,6 @@ public class ClientsTabController {
     }
 
     private void setupDynamicUserSearch() {
-        Search<User> search = new Search<>(userTable);
         searchField.textProperty().addListener((observable, oldValue, newValue) ->
                 search.findByEntityFields(newValue)
         );
@@ -73,12 +75,12 @@ public class ClientsTabController {
     }
 
     private void setupSearchByUserId() {
-        Search<User> search = new Search<>(userTable);
         searchByUserIdField.textProperty().addListener((observable, oldValue, newValue) ->
-                search.findByFieldName("orderId", newValue)
+                search.findByFieldName("userId", newValue)
         );
         setData(search.getFilteredData());
     }
+
     private void setData(FilteredList<User> filteredData) {
         SortedList<User> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(userTable.comparatorProperty());

@@ -42,7 +42,7 @@ public class User extends BaseEntity{
 
     private String role = "";
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user",  fetch = FetchType.EAGER)
     private List<Order> orders;
 
     public void addOrder(Order order) {

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="287.0" prefWidth="547.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.crm.controllers.admin_tabs.dialogs.AddOrderDialogController">
+   <children>
+      <TextField fx:id="userIdField" layoutX="421.0" layoutY="2.0" prefHeight="25.0" prefWidth="38.0" promptText="ID" />
+      <Button fx:id="addOrderItemBtn" layoutX="214.0" layoutY="48.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="38.0" text="+" />
+      <TableView fx:id="productsTable" layoutX="2.0" layoutY="73.0" prefHeight="214.0" prefWidth="249.0">
+         <columns>
+            <TableColumn fx:id="productIdCol" prefWidth="36.0" text="ID" />
+            <TableColumn fx:id="productNameCol" prefWidth="152.0" text="Назва" />
+            <TableColumn fx:id="productPriceCol" prefWidth="62.0" text="Ціна" />
+         </columns>
+      </TableView>
+      <TextField fx:id="searchByProductId" layoutY="48.0" prefHeight="25.0" prefWidth="38.0" promptText="ID" />
+      <TextField fx:id="searchByProductName" layoutX="38.0" layoutY="48.0" prefHeight="25.0" prefWidth="94.0" promptText="Пошук" />
+      <TableView fx:id="orderItemTable" layoutX="255.0" layoutY="73.0" prefHeight="214.0" prefWidth="289.0">
+         <columns>
+            <TableColumn fx:id="orderItemProductIdCol" prefWidth="36.0" text="ID" />
+            <TableColumn fx:id="orderItemProductNameCol" prefWidth="115.0" text="Назва" />
+            <TableColumn fx:id="orderItemQuantityCol" prefWidth="77.0" text="Кількість" />
+            <TableColumn fx:id="orderItemPriceCol" prefWidth="64.0" text="Ціна" />
+         </columns>
+      </TableView>
+      <TextField fx:id="quantityField" layoutX="132.0" layoutY="48.0" prefHeight="25.0" prefWidth="82.0" promptText="Кількість" />
+      <Button fx:id="removeOrderItemBtn" layoutX="509.0" layoutY="48.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="38.0" text="-" />
+      <Button fx:id="saveOrderBtn" layoutX="459.0" layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Створити" />
+      <Label layoutX="14.0" layoutY="9.0" text="Створення замовлення">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="355.0" layoutY="4.0" text="Id клієнта">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

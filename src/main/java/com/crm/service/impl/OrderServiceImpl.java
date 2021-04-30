@@ -13,6 +13,11 @@ public class OrderServiceImpl implements OrderService {
     private final OrderDao ORDER_DAO = new OrderDaoImpl(Order.class);
 
     @Override
+    public void save(Order order) {
+        ORDER_DAO.save(order);
+    }
+
+    @Override
     public List<Order> findAll() {
         return ORDER_DAO.findAll();
     }
@@ -25,5 +30,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void delete(Order order) {
         ORDER_DAO.delete(order);
+    }
+
+    @Override
+    public void update(Order order) {
+        ORDER_DAO.update(order);
     }
 }

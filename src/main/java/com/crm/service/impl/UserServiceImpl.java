@@ -13,7 +13,6 @@ import java.util.Optional;
 
 public class UserServiceImpl implements UserService {
     private final UserDao USER_DAO = new UserDaoImpl(User.class);
-    private final OrderDao ORDER_DAO = new OrderDaoImpl(Order.class);
 
     @Override
     public Optional<User> findById(int id) {
@@ -28,6 +27,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void register(User user) {
         USER_DAO.save(user);
+    }
+
+    @Override
+    public void update(User user) {
+        USER_DAO.update(user);
     }
 
     @Override

@@ -14,6 +14,7 @@ import com.crm.utils.JavaFxUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -58,9 +59,8 @@ public class LoginController {
     void initialize() {
         loginBtn.setOnAction(this::loginUser);
 
-        registerBtn.setOnAction(event -> JavaFxUtil.openUrl(event, REGISTER_WINDOW_URL));
+        registerBtn.setOnAction(event -> JavaFxUtil.openUrl(REGISTER_WINDOW_URL));
     }
-
     private void loginUser(ActionEvent event) {
         try {
             String loginText = loginField.getText().trim();
@@ -71,7 +71,9 @@ public class LoginController {
             if (userOptional.isPresent()) {
                 boolean isAdmin = userOptional.get().getRole().equals("ADMIN");
                 loggedInUser = userOptional.get();
-                JavaFxUtil.openUrl(event, ( isAdmin ? ADMIN_MENU_URL : USER_MENU_URL ));
+                Node node = (Node) event.getSource();
+                node.getScene().getWindow().hide();
+                JavaFxUtil.openUrl( isAdmin ? ADMIN_MENU_URL : USER_MENU_URL );
             } else {
                 throw new WrongEmailOrPassException("Wrong email or password!");
             }
@@ -79,5 +81,27 @@ public class LoginController {
             LOG.warning(e.getMessage());
         }
     }
-}
 
+//    private void loginUser(ActionEvent event) {
+//        try {
+//            String loginText = loginField.getText().trim();
+//            String passwordText = passwordField.getText().trim();
+//
+//            Optional<User> userOptional = USER_SERVICE.getByEmailAndPassword(loginText, passwordText);
+//
+//            if (userOptional.isPresent()) {
+//                boolean isAdmin = userOptional.get().getRole().equals("ADMIN");
+//                loggedInUser = userOptional.get();
+//                Node node = (Node) event.getSource();
+//                JavaFxUtil.openUrl(event, ( isAdmin ? ADMIN_MENU_URL : USER_MENU_URL ));
+//            } else {
+//                throw new WrongEmailOrPassException("Wrong email or password!");
+//            }
+//        } catch (WrongEmailOrPassException e) {
+//            LOG.warning(e.getMessage());
+//        }
+//    }
+
+}
+//    Node node = (Node) event.getSource();
+//        node.getScene().getWindow().hide();

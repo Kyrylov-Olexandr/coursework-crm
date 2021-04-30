@@ -14,6 +14,8 @@ public interface UserService {
 
     void register(User user);
 
+    void update(User user);
+
     List<User> findAll();
 
 }

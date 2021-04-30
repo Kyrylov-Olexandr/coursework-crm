@@ -19,7 +19,7 @@ public class Order extends BaseEntity{
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
@@ -28,7 +28,7 @@ public class Order extends BaseEntity{
 
     private String status;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", orphanRemoval = true, fetch = FetchType.EAGER)
     private List<OrderItem> orderItems;
 
     public void addOrderItem(OrderItem orderItem) {
@@ -38,15 +38,6 @@ public class Order extends BaseEntity{
     public void removeOrderItem(OrderItem orderItem) {
         orderItems.remove(orderItem);
     }
-
-    //    @ManyToMany(cascade = CascadeType.ALL)
-    //    @JoinTable(
-    //            name = "order_item",
-    //            joinColumns = @JoinColumn(name = "order_id"),
-    //            inverseJoinColumns = @JoinColumn(name = "product_id")
-    //    )
-    //    private List<Product> products;
-
 
     @Override
     public String toString() {

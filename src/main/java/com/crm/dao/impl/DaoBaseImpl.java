@@ -17,11 +17,6 @@ public abstract class DaoBaseImpl<E> implements DaoBase<E> {
         this.type = type;
     }
 
-//    public Class<E> getMyType() {
-//        return this.type;
-//    }
-
-
     @Override
     public Optional<E> findById(int id) {
         return Optional.of(HibernateUtil.getSessionFactory().openSession().get(type, id));
@@ -38,15 +33,16 @@ public abstract class DaoBaseImpl<E> implements DaoBase<E> {
 
     @Override
     public void update(E e) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tx1 = session.beginTransaction();
-        session.update(e);
+        session.merge(e);
         tx1.commit();
         session.close();
     }
 
     @Override
     public void delete(E e) {
+        HibernateUtil.getSessionFactory().getCurrentSession().close();
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
         session.delete(e);
@@ -57,8 +53,9 @@ public abstract class DaoBaseImpl<E> implements DaoBase<E> {
 
     @Override
     public List<E> findAll() {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Query query = session.createQuery("FROM " + type.getSimpleName());
-        return query.list();
+        try(Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query query = session.createQuery("FROM " + type.getSimpleName());
+            return query.list();
+        }
     }
 }

@@ -28,15 +28,6 @@ public class Product extends BaseEntity{
     @OneToMany(mappedBy = "product")
     private List<OrderItem> orderItems;
 
-//    @Transient
-//    private int quantity;
-
-//    private List<Order> orders;
-
-//    @ManyToOne
-//    @JoinColumn(name="id")
-//    private OrderItem orderItem;
-
 
     @Override
     public String toString() {
