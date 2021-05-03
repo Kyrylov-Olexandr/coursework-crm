@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import com.crm.controllers.objects.Search;
 import com.crm.entities.Order;
 import com.crm.entities.OrderItem;
 import com.crm.entities.Product;
@@ -44,8 +45,8 @@ public class AddOrderDialogController {
     @FXML private TableColumn<OrderItem, String> orderItemQuantityCol;
     @FXML private TableColumn<OrderItem, String> orderItemPriceCol;
 
-    @FXML private TextField searchByProductId;
-    @FXML private TextField searchByProductName;
+    @FXML private TextField searchByProductIdField;
+    @FXML private TextField searchByProductNameField;
     @FXML private TextField quantityField;
     @FXML private TextField userIdField;
 
@@ -58,17 +59,25 @@ public class AddOrderDialogController {
     private final OrderService ORDER_SERVICE = new OrderServiceImpl();
 
     private final Order NEW_ORDER = new Order();
+    private Search<Product> search;
 
     @FXML
     void initialize() {
         NEW_ORDER.setOrderItems(new ArrayList<>());
+
         setupOrderItemsTableCellsValueFactory();
         setupProductTableCellsValueFactory();
+
         fillProductTable();
+
+        search = new Search<>(productsTable);
+
+        setupDynamicProductSearch();
+        setupSearchByProductId();
+
         addOrderItemBtn.setOnAction(event -> addOrderItem());
         removeOrderItemBtn.setOnAction(event -> removeSelectedOrderItem());
         saveOrderBtn.setOnAction(event -> saveOrder());
-
     }
 
     private void saveOrder() {
@@ -76,10 +85,8 @@ public class AddOrderDialogController {
         if (userOptional.isPresent()) {
             NEW_ORDER.setCreatedDate(new Timestamp(System.currentTimeMillis()));
             NEW_ORDER.setUser(userOptional.get());
+            NEW_ORDER.setStatus("PENDING");
             ORDER_SERVICE.save(NEW_ORDER);
-//            User user = userOptional.get();
-//            user.addOrder(NEW_ORDER);
-//            USER_SERVICE.update(user);
         }
     }
 
@@ -99,12 +106,27 @@ public class AddOrderDialogController {
         productPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
 
+    private void setupDynamicProductSearch() {
+        searchByProductNameField.textProperty().addListener((observable, oldValue, newValue) ->
+                search.findByEntityFields(newValue)
+        );
+        setData(search.getFilteredData());
+    }
+
+    private void setupSearchByProductId() {
+        searchByProductIdField.textProperty().addListener((observable, oldValue, newValue) ->
+                search.findByFieldName("productId", newValue)
+        );
+        setData(search.getFilteredData());
+    }
+
     private void addOrderItem() {
         Product selectedProduct = productsTable.getSelectionModel().getSelectedItem();;
         OrderItem orderItem = new OrderItem();
         orderItem.setProduct(selectedProduct);
         orderItem.setProductId(selectedProduct.getId());
         orderItem.setProductQuantity(Integer.parseInt(quantityField.getText()));
+        orderItem.setOrder(NEW_ORDER);
         NEW_ORDER.getOrderItems().add(orderItem);
         fillOrderItemTable();
     }
@@ -121,6 +143,12 @@ public class AddOrderDialogController {
 
     private void fillOrderItemTable() {
         orderItemTable.setItems(FXCollections.observableArrayList(NEW_ORDER.getOrderItems()));
+    }
+
+    private void setData(FilteredList<Product> filteredData) {
+        SortedList<Product> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(productsTable.comparatorProperty());
+        productsTable.setItems(sortedData);
     }
 
 //    private void setData(FilteredList<Product> filteredData) {

@@ -15,4 +15,6 @@ public interface ProductService {
     void delete(Product product);
 
     void update(Product product);
+
+    void saveOrUpdate(Product product);
 }

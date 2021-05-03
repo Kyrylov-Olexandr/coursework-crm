@@ -22,11 +22,9 @@ import java.util.function.Predicate;
 
 public class UsersTabController {
 
-    public TextField searchField;
     @FXML private Button refreshUserTableBtn;
-    @FXML private ResourceBundle resources;
-    @FXML private URL location;
     @FXML private TextField searchByUserIdField;
+
     @FXML private TableView<User> userTable;
     @FXML private TableColumn<User, Integer> userIdCol;
     @FXML private TableColumn<User, String> userFirstNameCol;
@@ -37,16 +35,26 @@ public class UsersTabController {
     @FXML private TableColumn<User, String> userEmailCol;
     @FXML private TableColumn<User, String> userCreatedDateCol;
 
+    @FXML public TextField searchField;
+
+    @FXML private ResourceBundle resources;
+    @FXML private URL location;
+
+
     private final UserService USER_SERVICE = new UserServiceImpl();
     private Search<User> search;
 
     @FXML
     void initialize() {
         setupUserTableCellsValueFactory();
+
         fillUserTable();
+
         search = new Search<>(userTable);
+
         setupDynamicUserSearch();
         setupSearchByUserId();
+
         refreshUserTableBtn.setOnAction(event -> refreshUserTable());
     }
 

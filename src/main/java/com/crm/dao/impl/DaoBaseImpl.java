@@ -30,6 +30,15 @@ public abstract class DaoBaseImpl<E> implements DaoBase<E> {
         tx1.commit();
         session.close();
     }
+    @Override
+    public void saveOrUpdate(E e) {
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction tx1 = session.beginTransaction();
+        session.saveOrUpdate(e);
+        tx1.commit();
+        session.close();
+    }
+
 
     @Override
     public void update(E e) {

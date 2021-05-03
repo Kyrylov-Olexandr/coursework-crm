@@ -20,7 +20,7 @@ public class Search<T extends BaseEntity> {
     public void findByEntityFields(String searchText) {
         filteredData.setPredicate(entity -> {
             if (searchText == null || searchText.isEmpty()) return true;
-            return entity.toString().contains(searchText);
+            return entity.toString().toLowerCase().contains(searchText);
         });
     }
 

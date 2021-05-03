@@ -18,8 +18,8 @@
             <TableColumn fx:id="productPriceCol" prefWidth="62.0" text="Ціна" />
          </columns>
       </TableView>
-      <TextField fx:id="searchByProductId" layoutY="48.0" prefHeight="25.0" prefWidth="38.0" promptText="ID" />
-      <TextField fx:id="searchByProductName" layoutX="38.0" layoutY="48.0" prefHeight="25.0" prefWidth="94.0" promptText="Пошук" />
+      <TextField fx:id="searchByProductIdField" layoutY="48.0" prefHeight="25.0" prefWidth="38.0" promptText="ID" />
+      <TextField fx:id="searchByProductNameField" layoutX="38.0" layoutY="48.0" prefHeight="25.0" prefWidth="94.0" promptText="Пошук" />
       <TableView fx:id="orderItemTable" layoutX="255.0" layoutY="73.0" prefHeight="214.0" prefWidth="289.0">
          <columns>
             <TableColumn fx:id="orderItemProductIdCol" prefWidth="36.0" text="ID" />

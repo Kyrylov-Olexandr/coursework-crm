@@ -7,51 +7,61 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.crm.controllers.admin_tabs.OrdersTabController">
-   <children>
-       <TableView fx:id="ordersTable" layoutX="5.0" layoutY="58.0" prefHeight="239.0" prefWidth="374.0">
-         <columns>
-             <TableColumn fx:id="orderIdCol" prefWidth="48.0" text="ID зам." />
-             <TableColumn fx:id="createdDateCol" prefWidth="64.0" text="Дата" />
-            <TableColumn fx:id="orderStatusCol" prefWidth="48.0" text="Стан" />
-             <TableColumn fx:id="userIdCol" prefWidth="41.0" text="ID кл." />
-            <TableColumn fx:id="firstNameCol" prefWidth="62.0" text="Ім'я" />
-            <TableColumn fx:id="lastNameCol" prefWidth="65.0" text="Прізвище" />
-            <TableColumn fx:id="companyCol" prefWidth="59.0" text="Компанія" />
-            <TableColumn fx:id="locationCol" prefWidth="51.0" text="Локація" />
-            <TableColumn fx:id="emailCol" prefWidth="35.0" text="Email" />
-            <TableColumn fx:id="phoneCol" prefWidth="108.0" text="Телефон" />
-         </columns>
-       </TableView>
-       <TextField fx:id="searchByIdField" layoutX="5.0" layoutY="33.0" prefHeight="25.0" prefWidth="27.0" promptText="ID" />
-       <TextField fx:id="searchField" layoutX="31.0" layoutY="33.0" prefHeight="25.0" prefWidth="148.0" promptText="Пошук" />
-       <Button fx:id="refreshOrderItemsBtn" layoutX="628.0" layoutY="2.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="70.0" text="Оновити" />
-       <TableView fx:id="orderItemTable" layoutX="383.0" layoutY="58.0" prefHeight="239.0" prefWidth="315.0">
-         <columns>
-             <TableColumn fx:id="productIdCol" prefWidth="36.0" text="ID" />
-             <TableColumn fx:id="productNameCol" prefWidth="148.0" text="Назва" />
-             <TableColumn fx:id="productQuantityCol" prefWidth="58.0" text="Кількість" />
-             <TableColumn fx:id="productPriceCol" prefWidth="72.0" text="Ціна" />
-         </columns>
-       </TableView>
-       <Button fx:id="showProductsBtn" layoutX="258.0" layoutY="33.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="64.0" text="Огляд" />
-      <Button fx:id="deleteOrderBtn" layoutX="350.0" layoutY="33.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="-" />
-      <Button fx:id="deleteOrderItemBtn" layoutX="673.0" layoutY="33.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="-" />
-      <Button fx:id="updateOrderItemBtn" layoutX="569.0" layoutY="33.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" text="Редагувати&#10;" />
-      <Label layoutX="134.0" layoutY="1.0" prefHeight="27.0" prefWidth="103.0" text="Замовлення">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="513.0" layoutY="1.0" prefHeight="27.0" prefWidth="56.0" text="Товар">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <ComboBox fx:id="statusComboBox" layoutX="179.0" layoutY="33.0" prefHeight="25.0" prefWidth="79.0" promptText="Стан" visibleRowCount="3" />
-      <Button fx:id="addOrderBtn" layoutX="323.0" layoutY="33.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="+" />
-      <Button fx:id="addOrderItemBtn" layoutX="648.0" layoutY="33.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="+" />
-      <Button fx:id="refreshOrdersBtn" layoutX="5.0" layoutY="2.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="70.0" text="Оновити" />
-      <Button fx:id="updateOrderBtn" layoutX="297.0" layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" text="Редагувати&#10;" />
-   </children>
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.crm.controllers.admin_tabs.OrdersTabController">
+    <TableView fx:id="ordersTable" layoutX="5.0" layoutY="58.0" prefHeight="239.0" prefWidth="374.0">
+        <columns>
+            <TableColumn fx:id="orderIdCol" prefWidth="48.0" text="ID зам."/>
+            <TableColumn fx:id="createdDateCol" prefWidth="64.0" text="Дата"/>
+         <TableColumn fx:id="orderStatusCol" prefWidth="48.0" text="Стан"/>
+            <TableColumn fx:id="userIdCol" prefWidth="41.0" text="ID кл."/>
+         <TableColumn fx:id="firstNameCol" prefWidth="62.0" text="Ім'я"/>
+         <TableColumn fx:id="lastNameCol" prefWidth="65.0" text="Прізвище"/>
+         <TableColumn fx:id="companyCol" prefWidth="59.0" text="Компанія"/>
+         <TableColumn fx:id="locationCol" prefWidth="51.0" text="Локація"/>
+         <TableColumn fx:id="emailCol" prefWidth="35.0" text="Email"/>
+         <TableColumn fx:id="phoneCol" prefWidth="108.0" text="Телефон"/>
+        </columns>
+    </TableView>
+    <TextField fx:id="searchByIdField" layoutX="5.0" layoutY="33.0" prefHeight="25.0" prefWidth="27.0" promptText="ID"/>
+    <TextField fx:id="searchField" layoutX="31.0" layoutY="33.0" prefHeight="25.0" prefWidth="148.0"
+               promptText="Пошук"/>
+    <Button fx:id="refreshOrderItemsBtn" layoutX="628.0" layoutY="2.0" mnemonicParsing="false" prefHeight="17.0"
+            prefWidth="70.0" text="Оновити"/>
+    <TableView fx:id="orderItemTable" layoutX="383.0" layoutY="58.0" prefHeight="239.0" prefWidth="315.0">
+        <columns>
+            <TableColumn fx:id="productIdCol" prefWidth="36.0" text="ID"/>
+            <TableColumn fx:id="productNameCol" prefWidth="148.0" text="Назва"/>
+            <TableColumn fx:id="productQuantityCol" prefWidth="58.0" text="Кількість"/>
+            <TableColumn fx:id="productPriceCol" prefWidth="72.0" text="Ціна"/>
+        </columns>
+    </TableView>
+    <Button fx:id="showProductsBtn" layoutX="258.0" layoutY="33.0" mnemonicParsing="false" prefHeight="25.0"
+            prefWidth="64.0" text="Огляд"/>
+    <Button fx:id="deleteOrderBtn" layoutX="350.0" layoutY="33.0" mnemonicParsing="false" prefHeight="25.0"
+            prefWidth="27.0" text="-"/>
+    <Button fx:id="deleteOrderItemBtn" layoutX="673.0" layoutY="33.0" mnemonicParsing="false" prefHeight="25.0"
+            prefWidth="27.0" text="-"/>
+    <Button fx:id="updateOrderItemBtn" layoutX="569.0" layoutY="33.0" mnemonicParsing="false" prefHeight="25.0"
+            prefWidth="79.0" text="Редагувати&#10;"/>
+    <Label layoutX="134.0" layoutY="1.0" prefHeight="27.0" prefWidth="103.0" text="Замовлення">
+        <font>
+          <Font size="18.0"/>
+        </font>
+    </Label>
+    <Label layoutX="513.0" layoutY="1.0" prefHeight="27.0" prefWidth="56.0" text="Товар">
+        <font>
+          <Font size="18.0"/>
+        </font>
+    </Label>
+    <ComboBox fx:id="statusComboBox" layoutX="179.0" layoutY="33.0" prefHeight="25.0" prefWidth="79.0" promptText="Стан"
+              visibleRowCount="3"/>
+    <Button fx:id="addOrderBtn" layoutX="323.0" layoutY="33.0" mnemonicParsing="false" prefHeight="25.0"
+            prefWidth="27.0" text="+"/>
+    <Button fx:id="addOrderItemBtn" layoutX="648.0" layoutY="33.0" mnemonicParsing="false" prefHeight="25.0"
+            prefWidth="27.0" text="+"/>
+    <Button fx:id="refreshOrdersBtn" layoutX="5.0" layoutY="2.0" mnemonicParsing="false" prefHeight="17.0"
+            prefWidth="70.0" text="Оновити"/>
+    <Button fx:id="updateOrderBtn" layoutX="297.0" layoutY="2.0" mnemonicParsing="false" prefHeight="25.0"
+            prefWidth="79.0" text="Редагувати&#10;"/>
 </AnchorPane>

@@ -27,9 +27,6 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class OrdersTabController {
-    @FXML private Button updateOrderBtn;
-    @FXML private Button addOrderBtn;
-    @FXML private Button addOrderItemBtn;
     @FXML private TableView<Order> ordersTable;
     @FXML private TableColumn<Order, String> firstNameCol;
     @FXML private TableColumn<Order, String> lastNameCol;
@@ -41,11 +38,16 @@ public class OrdersTabController {
     @FXML private TableColumn<Order, String> orderIdCol;
     @FXML private TableColumn<Order, String> userIdCol;
     @FXML private TableColumn<Order, String> createdDateCol;
+
     @FXML private TableView<OrderItem> orderItemTable;
     @FXML private TableColumn<OrderItem, String> productIdCol;
     @FXML private TableColumn<OrderItem, String> productQuantityCol;
     @FXML private TableColumn<OrderItem, String> productPriceCol;
     @FXML private TableColumn<OrderItem, String> productNameCol;
+
+    @FXML private Button updateOrderBtn;
+    @FXML private Button addOrderBtn;
+    @FXML private Button addOrderItemBtn;
     @FXML private Button deleteOrderBtn;
     @FXML private Button showClientInfoBtn;
     @FXML private Button deleteOrderItemBtn;
@@ -53,10 +55,12 @@ public class OrdersTabController {
     @FXML private Button showProductsBtn;
     @FXML private Button refreshOrdersBtn;
     @FXML private Button refreshOrderItemsBtn;
+    @FXML private Button saveOrderItemsBtn;
+
     @FXML private TextField searchByIdField;
     @FXML private TextField searchField;
     @FXML private TextField searchByUserIdField;
-    @FXML private Button saveOrderItemsBtn;
+
     @FXML private ComboBox<String> statusComboBox;
 
     @FXML private ResourceBundle resources;
@@ -68,20 +72,26 @@ public class OrdersTabController {
 
     @FXML
     void initialize() {
+        setupOrdersTableCellsValueFactory();
+        setupOrderItemsTableCellsValueFactory();
+
+        fillOrderTable();
+
         search = new Search<>(ordersTable);
+
         showProductsBtn.setOnAction(event -> fillOrderItemsTable());
+
+        setupDynamicOrderSearch();
+        setupSearchByOrderId();
+        setupStatusComboBox();
+
         refreshOrdersBtn.setOnAction(event -> fillOrderTable());
         deleteOrderBtn.setOnAction(event -> deleteSelectedOrder());
         updateOrderItemBtn.setOnAction(event -> setupEditOrderItemDialog());
         updateOrderBtn.setOnAction(event -> setupEditOrderStatusDialog());
         deleteOrderItemBtn.setOnAction(event -> deleteSelectedOrderItem());
         addOrderBtn.setOnAction(event -> JavaFxUtil.openUrl("/view/admin_tabs/dialogs/addOrderDialog.fxml"));
-        setupDynamicOrderSearch();
-        setupSearchByOrderId();
-        setupStatusComboBox();
-        setupOrdersTableCellsValueFactory();
-        setupOrderItemsTableCellsValueFactory();
-        fillOrderTable();
+
     }
 
 
@@ -235,8 +245,6 @@ public class OrdersTabController {
             }
         });
     }
-
-
 
     private void setData(FilteredList<Order> filteredData) {
         SortedList<Order> sortedData = new SortedList<>(filteredData);

@@ -28,7 +28,7 @@ public class Order extends BaseEntity{
 
     private String status;
 
-    @OneToMany(mappedBy = "order", orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "order", orphanRemoval = true, fetch = FetchType.EAGER,  cascade=CascadeType.ALL)
     private List<OrderItem> orderItems;
 
     public void addOrderItem(OrderItem orderItem) {

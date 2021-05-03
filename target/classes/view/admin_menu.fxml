@@ -125,14 +125,7 @@
                     <tabs>
                         <Tab text="Каталог">
                             <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                    <children>
-                                        <ListView fx:id="catalogList" layoutX="14.0" layoutY="51.0" prefHeight="250.0" prefWidth="664.0" style="-fx-border-color: gray;" />
-                                        <TextField fx:id="searchField" layoutX="14.0" layoutY="14.0" promptText="Пошук" style="-fx-border-color: gray;" />
-                                        <Button fx:id="catalogSearchBtn" layoutX="175.0" layoutY="15.0" mnemonicParsing="false" text="Знайти" />
-                                        <Button fx:id="bucketBtn" layoutX="625.0" layoutY="15.0" mnemonicParsing="false" text="Кошик" />
-                                    </children>
-                                </AnchorPane>
+                                <fx:include fx:id="catalogTab" source="admin_tabs/catalogTab.fxml"/>
                             </content>
                         </Tab>
                         <Tab text="Замовлення">

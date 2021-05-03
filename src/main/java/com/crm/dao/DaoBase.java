@@ -8,6 +8,8 @@ public interface DaoBase<T> {
 
     void save(T t);
 
+    void saveOrUpdate(T t);
+
     void update(T t);
 
     void delete(T t);
