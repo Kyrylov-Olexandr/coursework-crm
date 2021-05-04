@@ -5,10 +5,8 @@ import com.crm.entities.Order;
 import com.crm.entities.OrderItem;
 import com.crm.service.OrderItemService;
 import com.crm.service.OrderService;
-import com.crm.service.UserService;
 import com.crm.service.impl.OrderItemServiceImpl;
 import com.crm.service.impl.OrderServiceImpl;
-import com.crm.service.impl.UserServiceImpl;
 import com.crm.utils.JavaFxUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -18,7 +16,6 @@ import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.util.Pair;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -90,7 +87,7 @@ public class OrdersTabController {
         updateOrderItemBtn.setOnAction(event -> setupEditOrderItemDialog());
         updateOrderBtn.setOnAction(event -> setupEditOrderStatusDialog());
         deleteOrderItemBtn.setOnAction(event -> deleteSelectedOrderItem());
-        addOrderBtn.setOnAction(event -> JavaFxUtil.openUrl("/view/admin_tabs/dialogs/addOrderDialog.fxml"));
+        addOrderBtn.setOnAction(event -> JavaFxUtil.openUrl("/view/admin_tabs/dialogs/add_order_dialog.fxml"));
 
     }
 

@@ -125,12 +125,12 @@
                     <tabs>
                         <Tab text="Каталог">
                             <content>
-                                <fx:include fx:id="catalogTab" source="admin_tabs/catalogTab.fxml"/>
+                                <fx:include fx:id="catalogTab" source="admin_tabs/catalog_tab.fxml"/>
                             </content>
                         </Tab>
                         <Tab text="Замовлення">
                             <content>
-                                <fx:include fx:id="ordersTab" source="admin_tabs/ordersTab.fxml"/>
+                                <fx:include fx:id="ordersTab" source="admin_tabs/orders_tab.fxml"/>
                             </content>
                         </Tab>
                         <Tab text="Документи">
@@ -155,23 +155,17 @@
                         </Tab>
                         <Tab text="Склад">
                             <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                <fx:include fx:id="stockTab" source="admin_tabs/stock_tab.fxml"/>
                             </content>
                         </Tab>
                         <Tab text="База клієнтів">
                             <content>
-                                <fx:include fx:id="clientsTab" source="admin_tabs/clientsTab.fxml"/>
+                                <fx:include fx:id="clientsTab" source="admin_tabs/clients_tab.fxml"/>
                             </content>
                         </Tab>
                         <Tab text="Реклама">
                             <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                    <children>
-                                        <Button layoutX="15.0" layoutY="21.0" mnemonicParsing="false" style="-fx-border-color: grey;" text="Розіслати" />
-                                        <TextArea layoutX="15.0" layoutY="63.0" prefHeight="234.0" prefWidth="661.0" style="-fx-border-color: grey;" />
-                                        <Button layoutX="103.0" layoutY="21.0" mnemonicParsing="false" style="-fx-border-color: grey;" text="Очистити" />
-                                    </children>
-                                </AnchorPane>
+                                <fx:include fx:id="advertisingTab" source="admin_tabs/advertising_tab.fxml"/>
                             </content>
                         </Tab>
                     </tabs>

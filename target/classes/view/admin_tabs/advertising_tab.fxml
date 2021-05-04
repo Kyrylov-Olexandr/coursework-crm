@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.crm.controllers.admin_tabs.AdvertisingTabController">
+    <Button fx:id="sendBtn" layoutX="489.0" layoutY="270.0" mnemonicParsing="false" style="-fx-border-color: grey;"
+            text="Розіслати"/>
+    <TextArea fx:id="textField" layoutX="347.0" layoutY="104.0" prefHeight="166.0" prefWidth="353.0"
+              promptText="Повідомлення" style="-fx-border-color: grey;"/>
+    <TextField fx:id="emailField" layoutX="541.0" layoutY="2.0" promptText="email"/>
+    <TableView fx:id="userTable" layoutY="49.0" prefHeight="248.0" prefWidth="336.0">
+        <columns>
+            <TableColumn fx:id="userIdCol" prefWidth="37.0" text="id"/>
+            <TableColumn fx:id="userFirstNameCol" prefWidth="75.0" text="ім'я"/>
+            <TableColumn fx:id="userLastNameCol" prefWidth="77.0" text="Фамілія"/>
+            <TableColumn fx:id="userCompanyNameCol" prefWidth="76.0" text="Компанія"/>
+            <TableColumn fx:id="userCityCol" prefWidth="75.0" text="Місто"/>
+            <TableColumn fx:id="userEmailCol" prefWidth="108.0" text="Email"/>
+        </columns>
+    </TableView>
+    <TextField fx:id="searchByUserIdField" layoutY="24.0" prefHeight="25.0" prefWidth="37.0" promptText="ID"/>
+    <TextField fx:id="searchField" layoutX="37.0" layoutY="24.0" prefHeight="25.0" prefWidth="212.0"
+               promptText="Пошук"/>
+    <Button fx:id="selectAllBtn" layoutX="249.0" layoutY="23.0" mnemonicParsing="false" style="-fx-border-color: grey;"
+            text="вибрати всіх"/>
+    <TextField fx:id="titleField" layoutX="347.0" layoutY="73.0" prefHeight="27.0" prefWidth="353.0" promptText="Тема"/>
+    <PasswordField fx:id="passwordField" layoutX="541.0" layoutY="37.0" promptText="password"/>
+</AnchorPane>

@@ -104,11 +104,6 @@ public class AdminCatalogTabController {
         }
     }
 
-//    private String getImagePath(String absolutePath) {
-//        int i = absolutePath.indexOf("/images/")
-//    }
-
-
     private void deleteProduct() {
         Product product = productTable.getSelectionModel().getSelectedItem();
 
