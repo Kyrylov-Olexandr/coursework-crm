@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.crm.controllers.user_tabs.UserCatalogTabController">
+   <children>
+      <TableView fx:id="productTable" layoutX="5.0" layoutY="52.0" prefHeight="239.0" prefWidth="286.0">
+         <columns>
+            <TableColumn fx:id="productNameCol" prefWidth="104.0" text="Назва" />
+            <TableColumn fx:id="productPriceCol" prefWidth="65.0" text="Ціна" />
+            <TableColumn fx:id="productStockCol" prefWidth="48.0" text="Склад" />
+            <TableColumn fx:id="productMeasureCol" prefWidth="68.0" text="Одиниця" />
+         </columns>
+      </TableView>
+      <TextField fx:id="searchField" layoutX="5.0" layoutY="25.0" prefHeight="27.0" prefWidth="227.0" promptText="Пошук" style="-fx-border-color: gray;" />
+      <Button fx:id="showProductBtn" layoutX="231.0" layoutY="26.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0" text="Огляд" />
+      <ImageView fx:id="imageHolder" fitHeight="142.0" fitWidth="170.0" layoutX="291.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="productNameLabel" layoutX="339.0" layoutY="30.0" text="Назва товару" />
+      <Label layoutX="487.0" layoutY="52.0" text="Ціна:" />
+      <Label layoutX="461.0" layoutY="85.0" text="Одиниця:" />
+      <Label layoutX="299.0" layoutY="193.0" prefHeight="17.0" prefWidth="88.0" text="Опис товару" />
+      <Button fx:id="addToCartBtn" layoutX="515.0" layoutY="159.0" mnemonicParsing="false" text="Додати у кошик" />
+      <Label layoutX="462.0" layoutY="114.0" text="Кількість:" />
+      <TextField fx:id="productQuantityField" layoutX="522.0" layoutY="110.0" prefHeight="25.0" prefWidth="74.0" />
+      <Button fx:id="openCartBtn" layoutX="641.0" layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0" text="Кошик" />
+      <TextArea fx:id="productDescriptionField" editable="false" layoutX="299.0" layoutY="213.0" prefHeight="79.0" prefWidth="395.0" />
+      <TextField fx:id="productPriceField" editable="false" layoutX="522.0" layoutY="48.0" prefHeight="25.0" prefWidth="74.0" />
+      <TextField fx:id="productMeasureField" editable="false" layoutX="522.0" layoutY="81.0" prefHeight="25.0" prefWidth="74.0" />
+   </children>
+</AnchorPane>
