@@ -13,6 +13,7 @@ import java.util.Optional;
 
 public class UserServiceImpl implements UserService {
     private final UserDao USER_DAO = new UserDaoImpl(User.class);
+    private User user;
 
     @Override
     public Optional<User> findById(int id) {
@@ -21,7 +22,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<User> getByEmailAndPassword(String email, String password) {
-        return USER_DAO.getByEmailAndPassword(email, password);
+        Optional<User> user = USER_DAO.getByEmailAndPassword(email, password);
+        user.ifPresent(u -> this.user = u);
+        return user;
     }
 
     @Override
@@ -38,6 +41,5 @@ public class UserServiceImpl implements UserService {
     public List<User> findAll() {
         return USER_DAO.findAll();
     }
-
 
 }

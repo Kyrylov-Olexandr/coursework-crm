@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "order_item")
@@ -20,6 +21,8 @@ public class OrderItem {
 
     @Column(name = "quantity")
     private int productQuantity;
+
+    private BigDecimal sum;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id", referencedColumnName = "id")

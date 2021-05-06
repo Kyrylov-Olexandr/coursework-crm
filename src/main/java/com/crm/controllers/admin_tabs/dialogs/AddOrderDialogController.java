@@ -1,5 +1,6 @@
 package com.crm.controllers.admin_tabs.dialogs;
 
+import java.math.BigDecimal;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -86,6 +87,7 @@ public class AddOrderDialogController {
             NEW_ORDER.setCreatedDate(new Timestamp(System.currentTimeMillis()));
             NEW_ORDER.setUser(userOptional.get());
             NEW_ORDER.setStatus("PENDING");
+            NEW_ORDER.setSum(ORDER_SERVICE.getOrderItemsTotalSum(NEW_ORDER));
             ORDER_SERVICE.save(NEW_ORDER);
         }
     }
@@ -122,12 +124,19 @@ public class AddOrderDialogController {
 
     private void addOrderItem() {
         Product selectedProduct = productsTable.getSelectionModel().getSelectedItem();;
+        int quantity = Integer.parseInt(quantityField.getText());
+        BigDecimal price = selectedProduct.getPrice();
+        BigDecimal sum = BigDecimal.valueOf(quantity).multiply(price);
+
         OrderItem orderItem = new OrderItem();
         orderItem.setProduct(selectedProduct);
         orderItem.setProductId(selectedProduct.getId());
-        orderItem.setProductQuantity(Integer.parseInt(quantityField.getText()));
+        orderItem.setProductQuantity(quantity);
+        orderItem.setSum(sum);
         orderItem.setOrder(NEW_ORDER);
+
         NEW_ORDER.getOrderItems().add(orderItem);
+
         fillOrderItemTable();
     }
 

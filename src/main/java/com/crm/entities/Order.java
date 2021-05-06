@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -27,6 +28,8 @@ public class Order extends BaseEntity{
     private Timestamp createdDate;
 
     private String status;
+
+    private BigDecimal sum;
 
     @OneToMany(mappedBy = "order", orphanRemoval = true, fetch = FetchType.EAGER,  cascade=CascadeType.ALL)
     private List<OrderItem> orderItems;

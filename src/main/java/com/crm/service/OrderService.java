@@ -2,6 +2,7 @@ package com.crm.service;
 
 import com.crm.entities.Order;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,4 +18,5 @@ public interface OrderService {
 
     void update(Order order);
 
+    BigDecimal getOrderItemsTotalSum(Order order);
 }
